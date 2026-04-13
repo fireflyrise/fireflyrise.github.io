@@ -1,0 +1,42 @@
+{
+  "business": "Sunrise Plumbing",
+  "city": "Phoenix, AZ",
+  "model": "REPLACE_WITH_CURRENT_MODEL_FROM_ai.google.dev",
+  "images": [
+    {
+      "filename": "hero-bg.webp",
+      "section": "Hero",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Professional plumber in uniform confidently inspecting pipes under a kitchen sink in a bright modern Phoenix home. Natural daylight through window. Clean, trustworthy, photorealistic. No text in image."
+    },
+    {
+      "filename": "about-us.webp",
+      "section": "About Us",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "Friendly, confident male plumber in branded uniform standing in front of a white service van in a sunny suburban Phoenix neighborhood. Professional headshot style, warm smile, arms crossed. Photorealistic. No text in image."
+    },
+    {
+      "filename": "services-bg.webp",
+      "section": "Services",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Top-down flat lay of clean professional plumbing tools — wrenches, pipe fittings, tape — arranged neatly on a white background. Studio lighting, product photography style. No text in image."
+    },
+    {
+      "filename": "banner-cta.webp",
+      "section": "Banner",
+      "aspect_ratio": "21:9",
+      "resolution": "1K",
+      "prompt": "Wide cinematic shot of a clean modern kitchen with gleaming fixtures and running water from a newly installed faucet. Warm inviting lighting. No people. Photorealistic. No text in image."
+    },
+    {
+      "filename": "steps-bg.webp",
+      "section": "Steps To Work With Us",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Plumber shaking hands with a happy homeowner couple at their front door, sunny day, suburban home. Professional, warm, trustworthy. Photorealistic. No text in image."
+    }
+  ]
+}

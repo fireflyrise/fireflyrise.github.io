@@ -1,0 +1,1197 @@
+# Claude Code Instructions: Local Service Website Generator
+
+---
+
+## CONFIGURATION VARIABLES
+
+Fill in these variables before running. Claude Code will use these throughout the project.
+
+```
+LOCAL_SERVICE = [LOCAL_SERVICE]              # e.g., House Cleaning Services, Plumbing Services, Electrical Services
+SERVICE_AREA = [SERVICE_AREA]                # e.g., Kansas City Metro, Phoenix Area, Dallas-Fort Worth
+NUMBER_OF_SUBSERVICES = [NUMBER_OF_SUBSERVICES]  # e.g., 6
+COMPANY_NAME = [COMPANY_NAME]                # e.g., All About Cleaning, ABC Plumbing, Mike's Electric
+PHONE_NUMBER = [PHONE_NUMBER]                # e.g., (913) 206-4119
+PHONE_NUMBER_PLAIN = [PHONE_NUMBER_PLAIN]    # e.g., 9132064119 (for tel: links)
+LOGO_URL = [LOGO_URL]                        # e.g., https://example.com/logo.jpg
+FAVICON_URL = [FAVICON_URL]                  # e.g., https://example.com/favicon.jpg
+MAIN_HEX_COLOR = [MAIN_HEX_COLOR]            # e.g., #3ba4af
+MAIN_HEX_HOVER_COLOR = [MAIN_HEX_HOVER_COLOR] # e.g., #52d7e5
+IFRAME_URL = [IFRAME_URL]                    # Google Maps embed URL (leave empty if none)
+WEBHOOK_URL = [WEBHOOK_URL]                  # Form submission endpoint
+SEO_IMAGE = [SEO_IMAGE]                      # Open Graph image URL
+```
+
+---
+
+## YOUR ROLE
+
+You are a prolific copywriter who has written thousands of successful Google Ads and Facebook Ads campaigns and created high-converting landing pages for thousands of clients. You always think of the needs, pain points, and desires of clients and write to address them. You use "You" and "Your" pronouns frequently when writing and avoid "we", "our", "ours", "our company" as much as possible since as a copywriter you are focused on the visitor/client/reader — not the company.
+
+---
+
+## PRE-DEVELOPMENT: MARKET RESEARCH
+
+Before generating any content, you must complete market research by answering these questions about the target audience and how they relate to [LOCAL_SERVICE]. Generate thorough answers for all questions and keep this research in mind when creating ANY content throughout the project:
+
+1. Who is the ideal customer? (Demographics, household type, income level)
+2. What are their biggest pain points regarding [LOCAL_SERVICE]?
+3. What are their desires and goals related to [LOCAL_SERVICE]?
+4. What objections might they have to hiring a [LOCAL_SERVICE] provider?
+5. What fears or concerns do they have about hiring this type of service?
+6. What would make them choose one [LOCAL_SERVICE] company over another?
+7. What trigger events cause someone to search for [LOCAL_SERVICE]?
+8. What questions do they need answered before making a decision?
+9. What social proof or trust signals matter most to them?
+10. What is the emotional benefit of using [LOCAL_SERVICE]?
+
+---
+
+## PROJECT OVERVIEW
+
+**Project Type:** Static HTML/CSS/JS website (no build tools)
+**Industry:** [LOCAL_SERVICE]
+**Service Area:** [SERVICE_AREA]
+
+---
+
+## COMPANY DETAILS
+
+- **Company Name:** [COMPANY_NAME]
+- **Phone:** [PHONE_NUMBER]
+- **Phone (Plain):** [PHONE_NUMBER_PLAIN]
+- **Location:** [SERVICE_AREA]
+- **Logo URL:** [LOGO_URL]
+- **Favicon URL:** [FAVICON_URL]
+- **Google Maps Iframe:** [IFRAME_URL]
+
+---
+
+## COLOR SCHEME
+
+- **Main HEX Color:** [MAIN_HEX_COLOR]
+- **Main HEX Hover Color:** [MAIN_HEX_HOVER_COLOR]
+- **Footer Background:** #282828
+- **Alternating Section Backgrounds:** White and a light color (complementary to main color)
+
+---
+
+## TYPOGRAPHY
+
+### Headings (h1, h2, h3, h4)
+- Font Family: Montserrat
+- Font Weight: 800
+- Text Transform: capitalize
+- Text Align: left
+- Color: Dark gray or white (depending on background)
+
+**Font Sizes:**
+- h1: 18px
+- h2: 3rem (2rem for widths < 768px)
+- h3: 1.5rem
+- h4: 1.25rem
+
+**Responsive Heading CSS:**
+```css
+h2 {
+  font-size: 3rem;
+}
+
+@media (max-width: 767px) {
+  h2,
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+}
+```
+
+### Body Text (p, spans, etc.)
+- Font Family: Open Sans
+- Color: Dark gray or white (depending on background)
+
+---
+
+## FOLDER STRUCTURE
+
+```
+/
+├── index.html (main [LOCAL_SERVICE] page)
+├── [subservice-1].html
+├── [subservice-2].html
+├── ... (create [NUMBER_OF_SUBSERVICES] subservice pages total)
+├── privacy-policy.html
+├── terms-and-conditions.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── scripts.js
+└── images/
+    └── (all Gemini-generated images in .webp format)
+```
+
+---
+
+## SUBSERVICES (PAGES)
+
+Research popular [LOCAL_SERVICE] websites and identify the [NUMBER_OF_SUBSERVICES] most popular and profitable subservices. These become the service pages of the website.
+
+File names are lowercase with dashes instead of spaces.
+
+---
+
+## SEO REQUIREMENTS
+
+Every page must include:
+
+### Meta Tags
+- Unique, compelling `<title>` tag (50-60 characters)
+- Unique `<meta name="description">` (150-160 characters)
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+- `<meta charset="UTF-8">`
+
+### Open Graph Tags
+```html
+<meta property="og:title" content="[Page Title]">
+<meta property="og:description" content="[Page Description]">
+<meta property="og:image" content="[SEO_IMAGE]">
+<meta property="og:url" content="[Page URL]">
+<meta property="og:type" content="website">
+```
+
+### Favicon
+```html
+<link rel="icon" type="image/jpeg" href="[FAVICON_URL]">
+```
+
+### Structured Data (LocalBusiness Schema)
+Add JSON-LD structured data for LocalBusiness on every page.
+
+---
+
+## IMAGE GENERATION
+
+Use the Google Gemini API with the **gemini-3-pro-image-preview** model which supports 2K and 1K output sizes.
+
+### Installation Requirements
+```bash
+# For cwebp (libwebp) - WebP conversion
+sudo apt-get install webp
+
+# For Sharp (Node.js alternative)
+npm install sharp
+
+# Google Generative AI SDK
+pip install google-generativeai --break-system-packages
+# or for Node.js
+npm install @google/generative-ai
+```
+
+### Image Generation Workflow
+
+**Step 1: Generate Image with Gemini 3 Pro**
+- Use model: `gemini-3-pro-image-preview`
+- Set output size: 2K for hero images (16:9), 1K for square images (1:1)
+- Gemini outputs PNG format
+
+**Python Example:**
+```python
+import google.generativeai as genai
+from google.generativeai import types
+import base64
+import os
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+def generate_image(prompt, output_path, aspect_ratio="16:9"):
+    """
+    Generate image using Gemini 3 Pro
+    aspect_ratio: "16:9" for hero images (2K), "1:1" for square images (1K)
+    """
+    model = genai.GenerativeModel("gemini-3-pro-image-preview")
+    
+    # Use 2K for hero (16:9), 1K for square (1:1)
+    image_size = "2k" if aspect_ratio == "16:9" else "1k"
+    
+    response = model.generate_content(
+        contents=prompt,
+        generation_config=types.GenerationConfig(
+            response_modalities=["image"],
+            image_generation_config=types.ImageGenerationConfig(
+                output_mime_type="image/png",
+                aspect_ratio=aspect_ratio,
+                output_compression_quality=100,
+                output_image_size=image_size
+            )
+        )
+    )
+    
+    # Save the image
+    for part in response.candidates[0].content.parts:
+        if part.inline_data:
+            image_data = base64.b64decode(part.inline_data.data)
+            with open(output_path, "wb") as f:
+                f.write(image_data)
+            return output_path
+    
+    return None
+
+# Usage:
+generate_image(
+    "Professional house cleaning service, modern home interior, bright and clean",
+    "temp_hero.png",
+    aspect_ratio="16:9"
+)
+```
+
+**Step 2: Convert PNG to WebP**
+- Use `cwebp` (from libwebp) or `Sharp` (Node.js) to convert PNG to WebP
+- Example using cwebp: `cwebp -q 85 input.png -o output.webp`
+- Example using Sharp:
+  ```javascript
+  const sharp = require('sharp');
+  await sharp('input.png').webp({ quality: 85 }).toFile('output.webp');
+  ```
+
+**Step 3: Clean Up**
+- Delete the original PNG file after successful conversion
+- Only keep the final WebP file
+
+**Step 4: Save to /images/ Folder**
+- Store all final WebP images in the `/images/` folder
+- Use descriptive filenames: `hero-[service-name].webp`, `about-us.webp`, `service-[name].webp`
+
+### Complete Example Script
+
+```python
+import google.generativeai as genai
+from google.generativeai import types
+import subprocess
+import base64
+import os
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+def generate_and_process_image(prompt, output_name, aspect_ratio="1:1", quality=85):
+    """
+    1. Generate image with Gemini 3 Pro (2K for hero, 1K for square)
+    2. Convert to WebP
+    3. Clean up temp files
+    """
+    temp_png = f"temp_{output_name}.png"
+    final_webp = f"images/{output_name}.webp"
+    
+    # Ensure images directory exists
+    os.makedirs("images", exist_ok=True)
+    
+    # Step 1: Generate with Gemini 3 Pro
+    # Use 2K for hero (16:9), 1K for square (1:1)
+    image_size = "2k" if aspect_ratio == "16:9" else "1k"
+    
+    model = genai.GenerativeModel("gemini-3-pro-image-preview")
+    
+    response = model.generate_content(
+        contents=prompt,
+        generation_config=types.GenerationConfig(
+            response_modalities=["image"],
+            image_generation_config=types.ImageGenerationConfig(
+                output_mime_type="image/png",
+                aspect_ratio=aspect_ratio,
+                output_compression_quality=100,
+                output_image_size=image_size
+            )
+        )
+    )
+    
+    for part in response.candidates[0].content.parts:
+        if part.inline_data:
+            image_data = base64.b64decode(part.inline_data.data)
+            with open(temp_png, "wb") as f:
+                f.write(image_data)
+    
+    # Step 2: Convert to WebP with compression
+    subprocess.run([
+        'cwebp',
+        '-q', str(quality),
+        temp_png,
+        '-o', final_webp
+    ])
+    
+    # Step 3: Clean up
+    os.remove(temp_png)
+    
+    return final_webp
+
+# Usage:
+# Hero image (16:9 aspect ratio)
+generate_and_process_image(
+    "Professional house cleaning service, modern home interior, bright and clean, photorealistic",
+    "hero-house-cleaning",
+    aspect_ratio="16:9",
+    quality=85
+)
+
+# Card image (1:1 square aspect ratio)
+generate_and_process_image(
+    "Deep cleaning service, detailed cleaning supplies, professional",
+    "service-deep-cleaning",
+    aspect_ratio="1:1",
+    quality=85
+)
+```
+
+### Image Specifications by Section
+| Section | Aspect Ratio | Gemini Output | Format | Target Size |
+|---------|--------------|------------------|--------|-------------|
+| Hero | 16:9 | 1920x1080 (2K) | .webp | < 400KB |
+| About Us | 1:1 | 1024x1024 | .webp | < 200KB |
+| Services Cards | 1:1 | 1024x1024 | .webp | < 200KB |
+
+**CRITICAL:**
+- Use `output_image_size="2k"` for hero images (16:9)
+- Use `output_image_size="1k"` for square images (1:1)
+- Use model `gemini-3-pro-image-preview` — NOT Imagen
+- Set `output_compression_quality=100` in Gemini to get highest quality PNG, then compress in WebP step
+
+---
+
+## GENERAL DESIGN RULES
+
+### Mobile Responsiveness
+- Website must be mobile-friendly
+- Easy to read with proper spacing
+- Test all breakpoints
+
+### Section Styling
+- Alternate section background colors between white and a light color
+- All section paddings must be consistent
+- All section containers must have the same max-width
+- No sections should use fixed or sticky positioning
+
+### Container Styling
+
+**CRITICAL: First, reset html and body to ensure full viewport width:**
+
+```css
+html, body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+```
+
+**The `.container` class:**
+
+```css
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (max-width: 749px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+```
+
+### Section Titles & Content
+- Make titles, subtitles, and content speak directly to the reader
+- Focus on benefits or pain points
+- Titles should be compelling and persuade the reader to call or request a quote
+
+---
+
+## CTA BUTTONS
+
+### Primary CTA Button (Phone)
+- Background: [MAIN_HEX_COLOR]
+- Text: White
+- Link: `tel:[PHONE_NUMBER_PLAIN]`
+- Hover Background: [MAIN_HEX_HOVER_COLOR]
+
+### Secondary CTA Button (Quote Modal)
+- Background: Transparent
+- Border: White outline
+- Text: White
+- Hover Background: [MAIN_HEX_HOVER_COLOR]
+- Text must be ≤30 characters
+- Text should motivate action (NOT "Get Free Quote" — be more persuasive)
+- Opens the multi-step popup modal
+
+### Button Specifications
+- Border Radius: 5px (squared corners)
+- Width: 400px (default)
+- Width: 100% for breakpoints < 700px
+- Font Size: 18px
+- Font Weight: 700
+- Center horizontally for breakpoints > 1000px
+- Stack vertically when they no longer fit horizontally
+
+---
+
+## MULTI-STEP POPUP MODAL
+
+### Design
+- Height: 550px
+- Centered on page (vertically and horizontally)
+- Header: Persuasive title (no dashes) with white text on [MAIN_HEX_COLOR] background
+
+### Form Steps
+Create 2-3 qualifying questions that a [LOCAL_SERVICE] business owner would want to know. Questions should be relevant to the specific industry.
+
+### Final Step
+Required fields:
+- Full Name
+- Phone Number
+- Email Address
+
+### Form Submission
+- Submit to webhook URL: [WEBHOOK_URL]
+- Use JavaScript fetch() to POST form data as JSON
+
+---
+
+## CARDS
+
+- Structure: Icon → Title → Content (vertical alignment)
+- Content: Left-aligned
+- Max cards per row: 3 (desktop)
+- Total cards should be a multiple of 3
+- Preferred: 3 cards maximum per section
+- Do NOT set a max-width for the cards grid
+
+**Responsive Behavior:**
+- Desktop (> 900px): 3 cards per row
+- Tablet/Mobile (≤ 900px): 1 card per row (full width, stacked vertically)
+
+**Card Grid CSS:**
+```css
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+**Applies to these sections:**
+- Why Us Section
+- Reviews Section
+- Steps To Work With Us Section
+
+---
+
+## ICONS
+
+- Size: 60px
+- Source: Font Awesome 6 Free (use CDN: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css)
+
+**CRITICAL: Only use icons from the approved list below. Do NOT guess or invent icon names. If an icon doesn't exist, it renders with zero height (invisible).**
+
+### APPROVED ICON LIST (Verified Working)
+
+**General/UI:**
+- `fa-solid fa-check` — checkmark
+- `fa-solid fa-star` — star
+- `fa-solid fa-circle-check` — circled checkmark
+- `fa-solid fa-shield` — shield
+- `fa-solid fa-shield-halved` — shield with half
+- `fa-solid fa-award` — award/badge
+- `fa-solid fa-trophy` — trophy
+- `fa-solid fa-thumbs-up` — thumbs up
+- `fa-solid fa-heart` — heart
+- `fa-solid fa-bolt` — lightning bolt
+- `fa-solid fa-fire` — fire
+
+**Communication/Contact:**
+- `fa-solid fa-phone` — phone
+- `fa-solid fa-envelope` — email envelope
+- `fa-solid fa-comment` — speech bubble
+- `fa-solid fa-comments` — multiple speech bubbles
+- `fa-solid fa-message` — message bubble
+
+**People/Users:**
+- `fa-solid fa-user` — single user
+- `fa-solid fa-users` — multiple users
+- `fa-solid fa-user-check` — user with checkmark
+- `fa-solid fa-people-group` — group of people
+- `fa-solid fa-handshake` — handshake
+
+**Business/Work:**
+- `fa-solid fa-briefcase` — briefcase
+- `fa-solid fa-building` — building
+- `fa-solid fa-calendar` — calendar
+- `fa-solid fa-calendar-check` — calendar with check
+- `fa-solid fa-clock` — clock
+- `fa-solid fa-clipboard` — clipboard
+- `fa-solid fa-clipboard-check` — clipboard with check
+- `fa-solid fa-list-check` — checklist
+
+**Home/Cleaning:**
+- `fa-solid fa-house` — house
+- `fa-solid fa-broom` — broom
+- `fa-solid fa-spray-can-sparkles` — spray can with sparkles
+- `fa-solid fa-soap` — soap
+- `fa-solid fa-pump-soap` — soap dispenser
+- `fa-solid fa-bucket` — bucket
+- `fa-solid fa-couch` — couch/sofa
+- `fa-solid fa-bed` — bed
+- `fa-solid fa-bath` — bathtub
+- `fa-solid fa-sink` — sink
+- `fa-solid fa-kitchen-set` — kitchen
+
+**Tools/Services:**
+- `fa-solid fa-wrench` — wrench
+- `fa-solid fa-screwdriver-wrench` — screwdriver and wrench
+- `fa-solid fa-hammer` — hammer
+- `fa-solid fa-toolbox` — toolbox
+- `fa-solid fa-plug` — electrical plug
+- `fa-solid fa-bolt-lightning` — lightning bolt
+- `fa-solid fa-faucet` — faucet
+- `fa-solid fa-faucet-drip` — dripping faucet
+- `fa-solid fa-shower` — shower head
+- `fa-solid fa-fire-extinguisher` — fire extinguisher
+- `fa-solid fa-fan` — fan
+- `fa-solid fa-temperature-half` — thermometer
+
+**Money/Value:**
+- `fa-solid fa-dollar-sign` — dollar sign
+- `fa-solid fa-piggy-bank` — piggy bank
+- `fa-solid fa-hand-holding-dollar` — hand holding money
+- `fa-solid fa-percent` — percent sign
+- `fa-solid fa-tags` — price tags
+
+**Reviews/Quotes:**
+- `fa-solid fa-quote-left` — opening quote
+- `fa-solid fa-quote-right` — closing quote
+- `fa-solid fa-star-half-stroke` — half star
+
+**Steps/Process:**
+- `fa-solid fa-1` — number 1
+- `fa-solid fa-2` — number 2
+- `fa-solid fa-3` — number 3
+- `fa-solid fa-arrow-right` — arrow right
+- `fa-solid fa-circle-1` — circled 1 (use `fa-solid fa-circle` + number overlay if needed)
+
+**Location:**
+- `fa-solid fa-location-dot` — map pin
+- `fa-solid fa-map` — map
+- `fa-solid fa-route` — route
+
+**Misc:**
+- `fa-solid fa-leaf` — leaf (eco-friendly)
+- `fa-solid fa-seedling` — seedling
+- `fa-solid fa-recycle` — recycle
+- `fa-solid fa-gem` — gem/diamond
+- `fa-solid fa-wand-magic-sparkles` — magic wand
+- `fa-solid fa-sparkles` — sparkles
+
+### Icon Usage Rules
+
+1. **ONLY use icons from the approved list above**
+2. **DO NOT invent icon names** like `fa-cleaning`, `fa-mop`, `fa-sparkle-clean` — these do not exist
+3. If you need an icon not on this list, choose the closest alternative from the list
+4. Always use the full class name including `fa-solid` prefix
+5. Test: If an icon has zero height when rendered, it's invalid — replace it with one from the list
+
+---
+
+## PAGE LAYOUT (All Service Pages)
+
+Follow this structure for all pages EXCEPT Privacy Policy and Terms & Conditions:
+
+1. Navigation Section (Header)
+2. Hero Section
+3. Why Us Section
+4. About Us Section
+5. Reviews Section
+6. Banner Section
+7. Services Section
+8. Steps To Work With Us Section
+9. FAQs Section
+10. Footer Section
+
+---
+
+## SECTION SPECIFICATIONS
+
+### NAVIGATION SECTION (HEADER)
+
+**Logo & Company Name (Left Side)**
+- Logo: width 50px
+- Company Name: font-size 22px, uppercase, font-weight 800, [MAIN_HEX_COLOR]
+- Both link to "/" — **use "/" not "index.html"**
+
+**Menu Bar (Right Side)**
+- Home link — **must point to "/" not "index.html"**
+- Services dropdown (all service pages listed; add chevron icon)
+- About Us dropdown (links to: #about-us section, /privacy-policy, /terms-and-conditions; add chevron icon)
+
+**Menu Styling**
+- Text: [MAIN_HEX_COLOR]
+- Background: White
+- Font Weight: 600
+- Hover: Background becomes [MAIN_HEX_HOVER_COLOR], text becomes white
+
+**Responsive**
+- Hamburger menu for breakpoints < 750px
+- Sub-dropdowns appear to the left of parent items (no overlap with content)
+
+**Rules**
+- All links use absolute paths from root
+- All URLs are lowercase with dashes instead of spaces
+- Service links show only service name (no city) but link to full URL with city
+- No buttons in navigation
+- Minimal height (low margins/padding)
+
+---
+
+### HERO SECTION
+
+**Background Image**
+- Generate using Gemini 3 Pro with **2K output** (1920x1080)
+- Aspect Ratio: 16:9
+- Format: .webp
+- Compress with quality 85
+
+**HTML Structure**
+```html
+<section class="hero" style="background-image: url('images/hero-[service].webp');">
+  <div class="container">
+    <div class="hero-content">
+      <!-- h1, h2, paragraph, and CTA buttons go here -->
+    </div>
+  </div>
+</section>
+```
+
+**Section Styling (.hero)**
+- Background image covers the full section
+- Background-size: cover
+- Background-position: center
+- NO overlay on the section itself
+
+**Content Container Styling (.hero-content)**
+- Width: 100% of container (no max-width)
+- Background: rgba(0, 0, 0, 0.75) — this is the 75% transparent dark overlay
+- The overlay is ONLY on this div, NOT on the entire section
+- Padding: Add appropriate padding inside for spacing
+- All text inside is left-aligned
+
+**Content Structure**
+1. **H1 Tag:** SERVICE PAGE name + [SERVICE_AREA]
+   - Example: "House Cleaning Services Kansas City Metro" or "Deep Cleaning Kansas City Metro"
+   - Uppercase letters
+   - Font Size: 18px
+   - Font Weight: 800
+   - Color: [MAIN_HEX_COLOR]
+
+2. **H2 Tag (Subtitle):** Related to service
+   - Font Weight: 800
+   - Font Size: 3rem (2rem for widths < 768px)
+   - Color: White
+
+3. **Paragraph Content:** Related to service and subtitle
+   - Font Weight: 600
+   - Font Size: 1.5rem
+   - Color: White
+
+4. **CTA Buttons Container:**
+   - Create a wrapper div for the buttons with class "hero-buttons"
+   - Display: flex
+   - Flex-direction: row (desktop), column (when buttons don't fit)
+   - Justify-content: center
+   - Align-items: center
+   - Gap: 15px between buttons
+   
+   **Individual Button Styling:**
+   - Both buttons MUST have the same width: 400px
+   - For breakpoints < 700px: Both buttons width: 100%
+   - Buttons must be equal width — do NOT use auto or fit-content
+
+   **Example CSS:**
+   ```css
+   .hero-buttons {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     gap: 15px;
+   }
+   
+   .hero-buttons .btn {
+     width: 400px;
+     min-width: 400px;
+   }
+   
+   @media (max-width: 850px) {
+     .hero-buttons {
+       flex-direction: column;
+     }
+   }
+   
+   @media (max-width: 700px) {
+     .hero-buttons .btn {
+       width: 100%;
+       min-width: 100%;
+     }
+   }
+   ```
+
+**Copy Guidelines**
+- Speak directly to reader
+- Address benefits and pain points
+- Persuade reader to call or request quote
+
+---
+
+### WHY US SECTION
+
+- H2: High-converting title addressing reader's needs/pain points (left-aligned)
+- Intro Paragraph: 40-60 words about why people choose this company (left-aligned, 100% container width)
+- 3 Cards: Reasons why people choose us
+  - Generate compelling differentiators based on typical [LOCAL_SERVICE] selling points
+  - Left-aligned, vertical structure
+  - **Icons: ONLY use icons from the APPROVED ICON LIST — do not invent icon names**
+  - **Responsive: 3 cards per row on desktop, 1 card per row at ≤ 900px**
+
+---
+
+### ABOUT US SECTION
+
+**Layout:** Two columns (50/50 split)
+
+**Left Column:**
+- H2: High-converting title addressing reader's needs/pain points (left-aligned)
+- Content: 100-130 words, at least 2 paragraphs
+- Speaks directly to pain points and needs
+
+**Right Column:**
+- Gemini-generated image related to title
+- Generate using Gemini 3 Pro with **1K output** (1024x1024)
+- Format: .webp
+- Aspect Ratio: 1:1
+- Compress with quality 85
+
+---
+
+### REVIEWS SECTION
+
+- H2: High-converting title (left-aligned)
+- Intro Paragraph: 40-60 words about reviews (left-aligned, 100% container width)
+- 3 Review Cards:
+  - Quote icon (same for all cards) — **use `fa-solid fa-quote-left` from the APPROVED ICON LIST**
+  - H3: High-converting title
+  - Review content addressing pain points/needs
+  - Reviewer name in cursive
+  - Generate realistic reviews if not provided
+  - **Responsive: 3 cards per row on desktop, 1 card per row at ≤ 900px**
+
+---
+
+### BANNER SECTION
+
+**Background:** [MAIN_HEX_COLOR] — mark as !important (overrides alternating colors)
+
+**Content:**
+- Persuasive text encouraging action
+- Text Color: White
+- Font Weight: 700
+- Font Size: 25px
+- Centered horizontally
+
+**CTA Buttons Container:**
+- Create a wrapper div for the buttons with class "banner-buttons"
+- Display: flex
+- Flex-direction: row (desktop), column (when buttons don't fit)
+- Justify-content: center
+- Align-items: center
+- Gap: 15px between buttons
+
+**Individual Button Styling:**
+- Both buttons MUST have the same width: 400px
+- For breakpoints < 700px: Both buttons width: 100%
+- Buttons must be equal width — do NOT use auto or fit-content
+
+**Button Color Modifications (different from Hero):**
+- Primary button background: Black (not [MAIN_HEX_COLOR])
+- Primary button hover: [MAIN_HEX_HOVER_COLOR]
+- Secondary button: Same as Hero (transparent with white outline)
+
+**Example CSS:**
+```css
+.banner-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.banner-buttons .btn {
+  width: 400px;
+  min-width: 400px;
+}
+
+@media (max-width: 850px) {
+  .banner-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .banner-buttons .btn {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+```
+
+---
+
+### SERVICES SECTION
+
+- Research and identify 4 services related to the current page's service
+- H2: High-converting title (left-aligned)
+- Intro Paragraph: 40-60 words (left-aligned, 100% container width)
+- 4 Service Cards in 2x2 grid:
+  - Gemini-generated image with **1K output** (.webp, 1:1 aspect ratio)
+  - H3: High-converting title
+  - Content addressing pain points/needs
+  - Left-aligned, vertical structure
+
+---
+
+### STEPS TO WORK WITH US SECTION
+
+- H2: High-converting title (left-aligned)
+- Intro Paragraph: 40-60 words (left-aligned, 100% container width)
+- 3 Cards showing the process:
+  - **Icons: ONLY use icons from the APPROVED ICON LIST — do not invent icon names**
+  - H3: High-converting title
+  - Content addressing pain points/needs
+  - Left-aligned, vertical structure
+  - **Responsive: 3 cards per row on desktop, 1 card per row at ≤ 900px**
+
+---
+
+### FAQS SECTION
+
+- H2: High-converting title (left-aligned)
+- Intro Paragraph: 40-60 words (left-aligned, 100% container width)
+
+**FAQ Accordion Specifications:**
+- 6 FAQs in accordion format
+- **Width: 100% of the container — DO NOT set a max-width on the FAQ accordion or its items**
+- Each FAQ item takes the full width of the container
+
+**FAQ Question Styling:**
+- Tag: H3
+- Text Color: White
+- Background: [MAIN_HEX_COLOR]
+- Width: 100% (no max-width)
+- Padding: Add appropriate padding for readability
+- Cursor: pointer
+
+**FAQ Answer Styling:**
+- Width: 100% (no max-width)
+- Word count: 70-150 words per answer
+- Padding: Add appropriate padding for readability
+
+**Content Guidelines:**
+- High-converting questions that address reader's needs and pain points
+- Do NOT discuss specific pricing
+- Questions and answers speak directly to the reader
+
+---
+
+### FOOTER SECTION
+
+**Background:** #282828 — mark as !important (overrides alternating colors)
+
+**Layout Options:**
+
+**IF [IFRAME_URL] IS PROVIDED (Two Columns):**
+
+**Footer Grid CSS:**
+```css
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.footer-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Center content horizontally in each column */
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+*Left Column (content centered horizontally):*
+1. `<a>` tag linking to "/" — **use "/" not "index.html"** — containing:
+   - Logo (width: 200px)
+   - Company name below logo (font-size: 22px, uppercase, font-weight: 800, [MAIN_HEX_COLOR])
+2. CTA Buttons below (stacked vertically, centered)
+   - 100% width on mobile
+   - No unnecessary wrapper divs
+
+*Right Column (content centered horizontally):*
+- Google Maps iframe using [IFRAME_URL]
+- Right column moves below left at ~1000px breakpoint
+
+**IF [IFRAME_URL] IS EMPTY (Single Column):**
+
+1. `<a>` tag linking to "/" — **use "/" not "index.html"** — containing:
+   - Logo (width: 200px)
+   - Company name below logo (font-size: 22px, uppercase, font-weight: 800, [MAIN_HEX_COLOR])
+2. CTA Buttons below (stacked vertically, centered)
+   - Max width: 600px
+   - 100% width when space is limited
+
+**Rules:**
+- No text decoration on links
+
+---
+
+## PRIVACY POLICY & TERMS AND CONDITIONS PAGES
+
+**Layout:** Header + Content + Footer only (no other sections)
+
+**Content:**
+- Generate appropriate legal content related to [LOCAL_SERVICE]
+- Text takes 100% of container width
+- Standard legal page formatting
+
+**File Names:**
+- privacy-policy.html
+- terms-and-conditions.html
+
+---
+
+## EXECUTION ORDER
+
+1. Complete market research (answer all questions for [LOCAL_SERVICE])
+2. Determine the [NUMBER_OF_SUBSERVICES] subservices for [LOCAL_SERVICE]
+3. Set up folder structure
+4. **Install dependencies: google-generativeai, cwebp (libwebp)**
+5. Create Gemini 3 Pro image generation utility (2K for hero, 1K for square, WebP conversion)
+6. Generate all required images (Gemini → WebP)
+7. Create CSS file with all styles
+8. Create JS file (modal, accordion, hamburger menu, form submission)
+9. Build index.html (main [LOCAL_SERVICE] page)
+10. Build all [NUMBER_OF_SUBSERVICES] subservice pages
+11. Build Privacy Policy page
+12. Build Terms and Conditions page
+13. **Run all tests from TESTING REQUIREMENTS section**
+14. **Fix any issues found during testing**
+15. Re-test until all tests pass
+
+---
+
+## TESTING REQUIREMENTS
+
+Before considering the project complete, perform the following tests:
+
+### 1. Page Existence & Navigation Tests
+
+**Verify all pages exist:**
+- [ ] index.html loads without errors
+- [ ] All [NUMBER_OF_SUBSERVICES] subservice pages exist and load
+- [ ] privacy-policy.html exists and loads
+- [ ] terms-and-conditions.html exists and loads
+
+**Verify all menu links work:**
+- [ ] Home link navigates to "/" (index page)
+- [ ] Each service in the Services dropdown links to the correct subservice page
+- [ ] About Us dropdown links work:
+  - [ ] About Us section anchor (#about-us) scrolls to correct section
+  - [ ] Privacy Policy link opens privacy-policy.html
+  - [ ] Terms and Conditions link opens terms-and-conditions.html
+- [ ] Logo in header links to "/"
+- [ ] Logo in footer links to "/"
+- [ ] No broken links (404 errors)
+
+**Test script for link validation:**
+```javascript
+// Run in browser console on each page
+document.querySelectorAll('a').forEach(link => {
+  const href = link.getAttribute('href');
+  if (href && !href.startsWith('#') && !href.startsWith('tel:') && !href.startsWith('mailto:')) {
+    fetch(href, { method: 'HEAD' })
+      .then(res => {
+        if (!res.ok) console.error(`BROKEN LINK: ${href}`);
+        else console.log(`OK: ${href}`);
+      })
+      .catch(() => console.error(`BROKEN LINK: ${href}`));
+  }
+});
+```
+
+### 2. Multi-Step Modal Popup Tests
+
+**Modal trigger test:**
+- [ ] Clicking secondary CTA button in Hero section opens modal
+- [ ] Clicking secondary CTA button in Banner section opens modal
+- [ ] Clicking secondary CTA button in Footer section opens modal
+- [ ] Modal appears centered on screen (vertically and horizontally)
+- [ ] Modal has correct height (550px)
+- [ ] Modal header displays with [MAIN_HEX_COLOR] background and white text
+
+**Modal step navigation test:**
+- [ ] Step 1 displays first qualifying question
+- [ ] User can select/enter answer for Step 1
+- [ ] "Next" button advances to Step 2
+- [ ] Step 2 displays second qualifying question
+- [ ] User can select/enter answer for Step 2
+- [ ] "Next" button advances to final step (or Step 3 if 3 questions)
+- [ ] "Back" button returns to previous step (if implemented)
+
+**Final step (contact info) test:**
+- [ ] Full Name field is present and required
+- [ ] Phone Number field is present and required
+- [ ] Email Address field is present and required
+- [ ] Submit button is present and clickable
+
+**Form validation test:**
+- [ ] Cannot submit without Full Name
+- [ ] Cannot submit without Phone Number
+- [ ] Cannot submit without Email Address
+- [ ] Email field validates proper email format
+
+**Modal close test:**
+- [ ] Modal can be closed (X button or click outside)
+- [ ] Closing modal resets form to Step 1
+
+**Form submission test:**
+- [ ] Form data is sent to [WEBHOOK_URL] as JSON via POST
+- [ ] All qualifying question answers are included in submission
+- [ ] Full Name, Phone Number, Email Address are included in submission
+- [ ] Success message or confirmation displays after submission
+
+**Test script for modal:**
+```javascript
+// Run in browser console to test modal functionality
+function testModal() {
+  // Find and click secondary CTA button
+  const secondaryCTA = document.querySelector('.btn-secondary, [data-modal-trigger]');
+  if (!secondaryCTA) {
+    console.error('FAIL: Secondary CTA button not found');
+    return;
+  }
+  
+  secondaryCTA.click();
+  
+  setTimeout(() => {
+    const modal = document.querySelector('.modal, [class*="modal"]');
+    if (!modal || window.getComputedStyle(modal).display === 'none') {
+      console.error('FAIL: Modal did not open');
+      return;
+    }
+    console.log('PASS: Modal opened successfully');
+    
+    // Check for required form fields
+    const nameField = modal.querySelector('input[name*="name"], input[placeholder*="Name"]');
+    const phoneField = modal.querySelector('input[name*="phone"], input[type="tel"]');
+    const emailField = modal.querySelector('input[name*="email"], input[type="email"]');
+    
+    console.log(nameField ? 'PASS: Name field found' : 'FAIL: Name field not found');
+    console.log(phoneField ? 'PASS: Phone field found' : 'FAIL: Phone field not found');
+    console.log(emailField ? 'PASS: Email field found' : 'FAIL: Email field not found');
+  }, 500);
+}
+testModal();
+```
+
+### 3. CTA Button Tests
+
+**Primary CTA (Phone) button test:**
+- [ ] Button displays phone number
+- [ ] Button has `tel:` link with [PHONE_NUMBER_PLAIN]
+- [ ] Clicking button initiates phone call (on mobile) or shows call prompt
+- [ ] Button has correct styling ([MAIN_HEX_COLOR] background, white text)
+- [ ] Hover changes background to [MAIN_HEX_HOVER_COLOR]
+
+**Secondary CTA button test:**
+- [ ] Button has persuasive text (≤30 characters, NOT "Get Free Quote")
+- [ ] Button has correct styling (transparent background, white outline)
+- [ ] Hover changes background to [MAIN_HEX_HOVER_COLOR]
+- [ ] Clicking opens modal popup
+
+**Button width test:**
+- [ ] Both buttons have equal width (400px) on desktop
+- [ ] Both buttons are centered horizontally
+- [ ] Both buttons stack vertically at ≤850px
+- [ ] Both buttons are 100% width at <700px
+
+### 4. Responsive Tests
+
+Test at these breakpoints:
+- [ ] 1920px (large desktop)
+- [ ] 1366px (laptop)
+- [ ] 1024px (tablet landscape)
+- [ ] 768px (tablet portrait)
+- [ ] 375px (mobile)
+
+**At each breakpoint verify:**
+- [ ] No horizontal scrolling
+- [ ] Text is readable
+- [ ] Buttons are accessible and tappable
+- [ ] Images are not distorted
+- [ ] Cards stack properly (3 → 1 at ≤900px)
+- [ ] Navigation hamburger menu appears at <750px
+- [ ] Hamburger menu opens and all links work
+
+### 5. Console Error Test
+
+- [ ] Open browser Developer Tools > Console
+- [ ] No JavaScript errors on page load
+- [ ] No 404 errors for resources (images, CSS, JS, fonts)
+- [ ] No CORS errors
+
+---
+
+## FINAL CHECKLIST
+
+- [ ] All pages are mobile-friendly
+- [ ] All section paddings are consistent
+- [ ] Colors complement the logo and [MAIN_HEX_COLOR]
+- [ ] CSS and JS are in separate files/folders
+- [ ] All images are in /images/ folder in .webp format
+- [ ] All images generated with Gemini 3 Pro (2K for hero, 1K for square — no blurry images)
+- [ ] All icons are from the APPROVED ICON LIST (no zero-height icons)
+- [ ] Multi-step modal submits to [WEBHOOK_URL]
+- [ ] All links use absolute paths and are lowercase with dashes
+- [ ] Favicon is on every page
+- [ ] Meta tags and Open Graph tags on every page
+- [ ] LocalBusiness schema on every page
+- [ ] No fixed/sticky positioning on sections
+- [ ] Accordion FAQs function correctly
+- [ ] Hamburger menu works on mobile
+- [ ] All CTAs are functional (tel link, modal trigger)
+- [ ] All TESTING REQUIREMENTS tests pass
+- [ ] All menu links navigate to existing pages
+- [ ] Modal popup opens, steps through questions, collects contact info, and submits
