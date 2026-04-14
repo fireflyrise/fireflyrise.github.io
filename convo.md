@@ -68,7 +68,8 @@ project-folder/
 - Ask: add location to filenames? (affects filename, `<title>`, `<h1>`)
 
 ### Round 3 — Branding
-- Logo (URL / filename / upload / none), Favicon (same options)
+- Logo for light backgrounds (URL / filename / upload / none), Logo for dark backgrounds (same options)
+- Favicon for light backgrounds (PNG, transparent bg), Favicon for dark backgrounds (PNG, transparent bg) — served via `prefers-color-scheme` media queries
 - Main HEX color, hover HEX color
 - Tagline (or Claude generates one)
 - Fonts: default Montserrat (headings) + Open Sans (body), client can override
@@ -148,7 +149,7 @@ project-folder/
 
 ## Navigation Spec
 
-- Logo (50px wide) + company name (22px, 800, uppercase, `--color-primary`) → both link to `/`
+- Logo (50px wide, light version for dark backgrounds, dark version for light backgrounds) + company name (22px, 800, uppercase, `--color-primary`) → both link to `/`
 - Menu: Home | Services ▾ | About Us ▾
 - No buttons in nav
 - All links lowercase with hyphens, absolute paths from root
