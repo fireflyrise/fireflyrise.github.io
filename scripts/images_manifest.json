@@ -1,0 +1,255 @@
+{
+  "business": "Firefly Rise",
+  "city": "National (United States)",
+  "model": "gemini-2.5-flash-image",
+  "images": [
+    {
+      "filename": "hero-bg.webp",
+      "section": "Homepage Hero",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "A confident American home service business owner (mid-40s, plumber or HVAC contractor in a clean branded uniform) standing next to a work van in front of a suburban home at golden hour, holding a smartphone showing a ringing call screen. Warm orange sunset glow in the background. Empowering, professional, aspirational. Photorealistic, cinematic lighting, shallow depth of field. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "about-us.webp",
+      "section": "Homepage About Us",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A diverse team of marketing specialists collaborating around a large monitor displaying colorful digital marketing dashboards, Google Ads campaigns, and analytics charts. Modern sunlit office, bright natural light, orange accent lighting. Focused professional atmosphere. One person points at the screen while others discuss strategy. Photorealistic, warm and professional atmosphere. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "banner-cta.webp",
+      "section": "Banner CTA background",
+      "aspect_ratio": "21:9",
+      "resolution": "2K",
+      "prompt": "Abstract orange gradient background with subtle bokeh light effects resembling glowing fireflies rising upward against a warm dark background. Highly textured, cinematic, premium feel. No people, no text. Photorealistic, dramatic lighting. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "steps-bg.webp",
+      "section": "Steps To Work With Us",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "A bright modern marketing agency workspace with three stations visible: a phone being answered by a friendly strategist, a laptop showing a strategy document, and a dashboard screen with rising green metrics. Warm sunlight through large windows. Orange accent elements throughout. Photorealistic, aspirational, clean. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "og-image.webp",
+      "section": "Homepage OG Social Share",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking wide composition: a phone ringing dramatically in the foreground with a home service contractor van and American suburban home softly in the background at golden hour. Warm orange glow, cinematic, high contrast. Wide 16:9 format, photorealistic, professional. No text, logos, or watermarks in the image."
+    },
+
+    {
+      "filename": "service-google-ads-management.webp",
+      "section": "Service — Google Ads Management",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "Close-up of a Google Ads campaign dashboard on a laptop screen showing rising conversion charts, keyword performance, and call metrics. A smartphone beside the laptop displays an active incoming call from a potential customer. Warm ambient orange lighting, bright modern desk. Photorealistic, clean and professional. No text that reads as brand names, no watermarks."
+    },
+    {
+      "filename": "service-facebook-meta-ads.webp",
+      "section": "Service — Facebook & Meta Ads",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A smartphone held in a homeowner's hand scrolling a social media feed in a cozy living room, with a well-crafted sponsored ad visible for a home service business featuring a before-and-after home improvement image. Warm natural lighting. Shot over the shoulder. Photorealistic, clean and professional. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "service-website-design-development.webp",
+      "section": "Service — Website Design & Development",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A clean, beautiful website for a home services business displayed on a large modern monitor in a bright designer workspace. The website shows a hero image, Call Now button in orange, and trust badges. Designer's hands visible adjusting on a tablet beside the monitor. Photorealistic, clean and professional. No legible text, no watermarks."
+    },
+    {
+      "filename": "service-landing-page-design.webp",
+      "section": "Service — Landing Page Design",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A laptop and smartphone side by side showing matching landing page designs for a home service business with prominent orange Call Now buttons, contact forms, and conversion-focused layouts. Warm, bright desk setting with a notepad and coffee. Photorealistic, clean and professional. No legible brand text, no watermarks."
+    },
+    {
+      "filename": "service-lead-generation.webp",
+      "section": "Service — Lead Generation",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A close-up of a contractor's smartphone showing a stream of incoming qualified lead notifications with homeowner names, addresses, and service requests. The contractor's hand is visible holding the phone. Background shows a service van slightly out of focus. Warm golden hour lighting. Photorealistic, clean and professional. No real-looking personal info visible, no watermarks."
+    },
+    {
+      "filename": "service-reputation-management.webp",
+      "section": "Service — Reputation Management",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "Close-up shot of a smartphone screen showing a row of glowing five-star reviews for a home services company. The phone is held in a contractor's hand, and in the softly blurred background is a home work van. Warm bright lighting with orange highlights. Photorealistic, clean and professional. No legible names, no watermarks."
+    },
+    {
+      "filename": "service-google-business-profile-optimization.webp",
+      "section": "Service — Google Business Profile Optimization",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A smartphone screen showing a Google Maps search for 'plumber near me' with a highlighted top 3-pack listing featuring a home service business with 5-star rating. A contractor's hand holds the phone with a service van visible in the background. Bright outdoor daylight. Photorealistic, clean and professional. No legible real business names, no watermarks."
+    },
+    {
+      "filename": "service-conversion-rate-optimization.webp",
+      "section": "Service — Conversion Rate Optimization",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A laptop screen displaying a before and after comparison of a home service website — the 'after' version showing dramatically higher conversion metrics, more prominent call-to-action buttons, and cleaner layout. An analyst's hand points at improvement arrows on the screen. Warm desk lighting. Photorealistic, clean and professional. No legible brand text, no watermarks."
+    },
+    {
+      "filename": "service-call-tracking-analytics.webp",
+      "section": "Service — Call Tracking & Analytics",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A dashboard on a monitor displaying call tracking analytics: a map of the US with phone call pins, campaign attribution graphs, and a list of recent inbound calls with their source campaign. Modern clean marketing agency workspace. Warm orange lighting accents. Photorealistic, clean and professional. No legible brand names, no watermarks."
+    },
+    {
+      "filename": "service-branding-logo-design.webp",
+      "section": "Service — Branding & Logo Design",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "prompt": "A designer's workspace with sketches and mood boards showing the evolution of a professional home services brand identity — cohesive logo concepts, brand color palette with warm orange tones, uniform mockups, and a truck wrap design laid out on a bright modern desk. Photorealistic, clean and professional. No legible brand names, no watermarks."
+    },
+
+    {
+      "filename": "hero-google-ads-management.webp",
+      "section": "Service Page Hero — Google Ads",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "A wide cinematic shot of a contractor looking at an expansive multi-monitor setup displaying rising Google Ads performance charts and a world of green metrics. Warm orange evening light streaming through office windows. Aspirational, triumphant mood. Photorealistic, cinematic. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "hero-facebook-meta-ads.webp",
+      "section": "Service Page Hero — Facebook & Meta Ads",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic scene: a homeowner relaxing on a couch scrolling their phone while a compelling Facebook ad for a home service business appears in their feed. Behind the phone, softly blurred, is the warm living room. Warm orange accent lighting. Photorealistic, cinematic, intimate. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "hero-website-design-development.webp",
+      "section": "Service Page Hero — Website Design",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide shot of a sleek home services business website displayed on a 5K studio monitor in a premium design agency setting. Hero image with prominent orange Call Now button. Two designers collaborate in the softly blurred background. Warm golden hour light. Photorealistic, cinematic. No legible brand text, no watermarks."
+    },
+    {
+      "filename": "hero-landing-page-design.webp",
+      "section": "Service Page Hero — Landing Page Design",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide shot: a row of devices (desktop, tablet, phone) displaying a perfectly-designed conversion-focused landing page for a home services business. Prominent orange conversion buttons visible. Bright modern studio. Photorealistic, cinematic. No legible brand text, no watermarks."
+    },
+    {
+      "filename": "hero-lead-generation.webp",
+      "section": "Service Page Hero — Lead Generation",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic shot of a contractor standing confidently in front of a service van at golden hour, smartphone in hand showing a string of fresh lead notifications glowing on the screen. American suburban home in soft-focus background. Empowering, warm orange lighting. Photorealistic, cinematic. No legible personal info, no watermarks."
+    },
+    {
+      "filename": "hero-reputation-management.webp",
+      "section": "Service Page Hero — Reputation Management",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic composition: a smartphone in the foreground displays an overflow of glowing 5-star reviews for a home services company, while the contractor and his van are softly focused behind. Bright warm lighting, triumphant mood. Photorealistic, cinematic. No legible names, no watermarks."
+    },
+    {
+      "filename": "hero-google-business-profile-optimization.webp",
+      "section": "Service Page Hero — GBP Optimization",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic shot of a contractor holding a smartphone showing Google Maps with his own business ranking #1 in the 3-pack with a bright orange pin highlighted. Service van and suburban backdrop softly blurred. Golden hour warm light. Empowering mood. Photorealistic, cinematic. No legible real business names, no watermarks."
+    },
+    {
+      "filename": "hero-conversion-rate-optimization.webp",
+      "section": "Service Page Hero — CRO",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic shot of a marketing analyst at a modern desk pointing at rising green conversion metric charts on multiple monitors with clear 'before' and 'after' results for a home services website. Warm orange ambient light. Triumphant mood. Photorealistic, cinematic. No legible brand names, no watermarks."
+    },
+    {
+      "filename": "hero-call-tracking-analytics.webp",
+      "section": "Service Page Hero — Call Tracking",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic shot of a large analytics dashboard displayed on wall-sized monitors showing a live US map with incoming phone call pins, campaign attribution, and performance stats. A marketing strategist observes confidently. Warm orange accent lighting. Photorealistic, cinematic, modern. No legible real brand names, no watermarks."
+    },
+    {
+      "filename": "hero-branding-logo-design.webp",
+      "section": "Service Page Hero — Branding",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "prompt": "Wide cinematic composition: a designer's premium workspace with a beautifully crafted home services brand identity laid out — cohesive logo, brand colors in warm orange, mockup of a truck wrap with the new branding, uniform mockup, and business cards. Bright natural light, editorial photography style. Photorealistic, cinematic. No legible brand names, no watermarks."
+    },
+
+    {
+      "filename": "og-google-ads-management.webp",
+      "section": "Service Page OG — Google Ads",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking wide 16:9 social share image: a Google Ads dashboard with soaring green conversion metrics in the foreground and a contractor answering a phone call in the softly blurred background. Warm orange accent lighting. High contrast, eye-catching. Wide 16:9 format, photorealistic, professional. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "og-facebook-meta-ads.webp",
+      "section": "Service Page OG — Facebook Ads",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a smartphone displaying a home services Facebook ad in a cozy living room, with the homeowner about to tap the Call button. Warm orange accent lighting. High contrast. Wide 16:9 format, photorealistic, professional. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "og-website-design-development.webp",
+      "section": "Service Page OG — Website Design",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a sleek home services website displayed on a modern monitor with a bright orange Call Now button prominently featured. Clean, inviting, professional. Warm designer workspace background softly blurred. Wide 16:9 format, photorealistic, high contrast. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "og-landing-page-design.webp",
+      "section": "Service Page OG — Landing Page Design",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a perfectly designed landing page displayed across desktop, tablet, and phone with a prominent orange conversion button. Clean modern studio setting. Wide 16:9 format, photorealistic, high contrast, professional. No text, logos, or watermarks in the image."
+    },
+    {
+      "filename": "og-lead-generation.webp",
+      "section": "Service Page OG — Lead Generation",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a contractor in work uniform confidently holding a smartphone showing new incoming leads, with his service van and a home in the warm golden-hour background. Empowering mood. Wide 16:9 format, photorealistic, high contrast, professional. No legible personal info, no watermarks."
+    },
+    {
+      "filename": "og-reputation-management.webp",
+      "section": "Service Page OG — Reputation Management",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a smartphone displaying a stream of glowing 5-star reviews for a home service company, with the contractor softly out of focus behind smiling. Warm bright lighting, triumphant. Wide 16:9 format, photorealistic, high contrast, professional. No legible names, no watermarks."
+    },
+    {
+      "filename": "og-google-business-profile-optimization.webp",
+      "section": "Service Page OG — GBP Optimization",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a smartphone showing Google Maps search results with the contractor's business pinned as #1 in the 3-pack with 5-star reviews. Service van in warm golden-hour background. Wide 16:9 format, photorealistic, high contrast, professional. No legible real business names, no watermarks."
+    },
+    {
+      "filename": "og-conversion-rate-optimization.webp",
+      "section": "Service Page OG — CRO",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: dual monitors with a dramatic before-and-after conversion comparison for a home services website showing rising green metrics. Warm studio lighting with orange accents. Wide 16:9 format, photorealistic, high contrast, professional. No legible brand names, no watermarks."
+    },
+    {
+      "filename": "og-call-tracking-analytics.webp",
+      "section": "Service Page OG — Call Tracking",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a wall-sized analytics dashboard with a live US map full of incoming call pins, performance charts, and campaign attribution. Modern marketing agency workspace. Warm orange accent lighting. Wide 16:9 format, photorealistic, high contrast, professional. No legible brand names, no watermarks."
+    },
+    {
+      "filename": "og-branding-logo-design.webp",
+      "section": "Service Page OG — Branding",
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "prompt": "Striking 16:9 composition: a premium designer workspace with a complete home services brand identity laid out — logo, brand colors, truck wrap mockup, uniforms, and business cards — all cohesive in warm orange tones. Editorial photography style. Wide 16:9 format, photorealistic, high contrast, professional. No legible brand names, no watermarks."
+    }
+  ]
+}

@@ -28,6 +28,8 @@ import os
 import sys
 from pathlib import Path
 
+import io
+
 from dotenv import load_dotenv
 from PIL import Image
 
@@ -115,11 +117,11 @@ for idx, item in enumerate(images, 1):
             ),
         )
 
-        # Extract PIL image from response
+        # Extract PIL image from response (via inline_data bytes)
         pil_image = None
         for part in response.parts:
-            pil_image = part.as_image()
-            if pil_image:
+            if getattr(part, "inline_data", None) and part.inline_data.data:
+                pil_image = Image.open(io.BytesIO(part.inline_data.data))
                 break
 
         if pil_image is None:

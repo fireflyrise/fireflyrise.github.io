@@ -1,0 +1,21 @@
+# Environment — NEVER commit
+.env
+.env.local
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Python build cache
+__pycache__/
+*.pyc
+
+# Claude Code — local settings and worktrees (keep launch.json for previewing)
+.claude/settings.local.json
+.claude/worktrees/
