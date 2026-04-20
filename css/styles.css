@@ -283,17 +283,22 @@ section {
   border-color: var(--color-primary);
 }
 
-/* Hero variant — sits above the h1 on the dark overlay */
+/* Hero variant — plain text link above the h1 (no button chrome) */
 .hero-lang-toggle {
   margin-bottom: var(--space-sm);
+  padding: 0;
   background: transparent;
-  border-color: #ffffff;
+  border: none;
+  border-radius: 0;
   color: #ffffff;
+  transform-origin: left center;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 .hero-lang-toggle:hover {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #ffffff;
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  transform: scale(1.08);
 }
 
 /* Hamburger */
