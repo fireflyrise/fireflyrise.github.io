@@ -13,9 +13,19 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from site_data import (
     BUSINESS, SERVICES, SERVICE_BY_SLUG_EN, SERVICE_BY_SLUG_ES,
-    HOME_EN_FILE, HOME_ES_FILE, HOME_EN_PATH, HOME_ES_PATH,
+    HOME_EN_FILE, HOME_ES_FILE, HOME_EN_PATH, HOME_ES_PATH, HOME_ES_SLUG,
     REVIEWS_EN, REVIEWS_ES, WHY_US_ICONS, STEP_ICONS,
 )
+
+
+def clean_url(slug):
+    """/slug/ — the public URL for a service or legal page."""
+    return "/" + slug + "/"
+
+
+def clean_file(slug):
+    """slug/index.html — the filesystem output path."""
+    return slug + "/index.html"
 from faqs_data import FAQS_EN, FAQS_ES
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -348,19 +358,19 @@ def render_nav(lang, current_path):
     for s in SERVICES:
         slug = s["slug_en"] if lang == "en" else s["slug_es"]
         name = s["name_en"] if lang == "en" else s["name_es"]
-        service_links.append(f'            <li><a href="/{slug}.html">{html_escape(name)}</a></li>')
+        service_links.append(f'            <li><a href="{clean_url(slug)}">{html_escape(name)}</a></li>')
     service_links_html = "\n".join(service_links)
 
     # About anchor
     if lang == "en":
         about_anchor = "/#about-us"
-        lang_toggle_href = "/" + HOME_ES_FILE
+        lang_toggle_href = HOME_ES_PATH
     else:
-        about_anchor = "/" + HOME_ES_FILE + "#about-us"
+        about_anchor = HOME_ES_PATH + "#about-us"
         lang_toggle_href = "/"
 
-    privacy_path = "/privacy-policy.html" if lang == "en" else "/politica-de-privacidad.html"
-    terms_path = "/terms-and-conditions.html" if lang == "en" else "/terminos-y-condiciones.html"
+    privacy_path = clean_url("privacy-policy") if lang == "en" else clean_url("politica-de-privacidad")
+    terms_path = clean_url("terms-and-conditions") if lang == "en" else clean_url("terminos-y-condiciones")
 
     logo_light = "/images/logo-light-backgrounds.png"
 
@@ -446,7 +456,7 @@ def render_about_us(lang, page_type="home"):
     # Contextual link back to homepage on service pages
     home_link_html = ""
     if page_type != "home":
-        home_href = "/" if lang == "en" else "/" + HOME_ES_FILE
+        home_href = "/" if lang == "en" else HOME_ES_PATH
         if lang == "en":
             home_link_html = f'\n          <p>Want the full picture? See every marketing service for home service contractors on our <a href="{home_href}">home services marketing agency</a> homepage.</p>'
         else:
@@ -542,7 +552,7 @@ def render_services(lang, exclude_slug=None, count=4):
     cards_html = ""
     for s in ordered[:count]:
         slug = s[lang_key_slug]
-        cards_html += f"""        <a href="/{slug}.html" class="service-card fade-in">
+        cards_html += f"""        <a href="{clean_url(slug)}" class="service-card fade-in">
           <div class="service-card-image">
             <img src="/images/service-{s['slug_en']}.webp" alt="{html_escape(s[lang_key_name])} for home service contractors" loading="lazy" width="600" height="600">
           </div>
@@ -622,16 +632,16 @@ def render_footer(lang):
     L = LABELS[lang]
     SH = SECTION_HEADINGS[lang]
     logo_dark = "/images/logo-dark-backgrounds.png"
-    privacy_path = "/privacy-policy.html" if lang == "en" else "/politica-de-privacidad.html"
-    terms_path = "/terms-and-conditions.html" if lang == "en" else "/terminos-y-condiciones.html"
-    home_href = "/" if lang == "en" else "/" + HOME_ES_FILE
+    privacy_path = clean_url("privacy-policy") if lang == "en" else clean_url("politica-de-privacidad")
+    terms_path = clean_url("terms-and-conditions") if lang == "en" else clean_url("terminos-y-condiciones")
+    home_href = "/" if lang == "en" else HOME_ES_PATH
 
     # Footer service list
     svc_links = []
     for s in SERVICES:
         slug = s["slug_en"] if lang == "en" else s["slug_es"]
         name = s["name_en"] if lang == "en" else s["name_es"]
-        svc_links.append(f'    <a href="/{slug}.html">{html_escape(name)}</a>')
+        svc_links.append(f'    <a href="{clean_url(slug)}">{html_escape(name)}</a>')
     svc_links_html = "\n".join(svc_links)
 
     return f"""<footer class="footer">
@@ -814,14 +824,14 @@ def build_homepage(lang):
         hero_body = "You're great at your trade. Your marketing shouldn't be a second job you're bad at. Get Google Ads, Facebook campaigns, websites, and lead generation engineered exclusively for home service contractors — and watch the phone start ringing like it should."
         out_path = HOME_EN_FILE
         canon = "/"
-        alt = "/" + HOME_ES_FILE
+        alt = HOME_ES_PATH
     else:
         title = BUSINESS_NAME + " | Agencia de Marketing Digital para Servicios del Hogar"
         description = "Agencia de marketing digital creada exclusivamente para contratistas de servicios del hogar. Google Ads, Facebook Ads, sitios web y generación de leads. Llama al (602) 829-0009."
         hero_headline = "Deja De Perder Trabajos Con Contratistas Que Simplemente Se Venden Mejor"
         hero_body = "Eres bueno en tu oficio. El marketing no debería ser un segundo trabajo en el que eres malo. Obtén Google Ads, campañas de Facebook, sitios web, y generación de leads creados exclusivamente para contratistas — y mira cómo empieza a sonar tu teléfono."
         out_path = HOME_ES_FILE
-        canon = "/" + HOME_ES_FILE
+        canon = HOME_ES_PATH
         alt = "/"
 
     html = render_full_page(
@@ -854,8 +864,8 @@ def build_service_pages(lang):
         og_image = "og-" + s["slug_en"] + ".webp"
 
         alt_slug = s["slug_es"] if lang == "en" else s["slug_en"]
-        canon = "/" + slug + ".html"
-        alt = "/" + alt_slug + ".html"
+        canon = clean_url(slug)
+        alt = clean_url(alt_slug)
 
         # FAQs key: always keyed by English slug for EN, Spanish slug for ES
         faqs_key = s["slug_en"] if lang == "en" else s["slug_es"]
@@ -874,7 +884,7 @@ def build_service_pages(lang):
             page_slug_for_reviews_and_faqs=faqs_key,
             exclude_service_slug=slug,
         )
-        write_file(slug + ".html", html)
+        write_file(clean_file(slug), html)
 
 
 # ── Build: Legal pages ───────────────────────────────────────────────────────
@@ -887,18 +897,18 @@ def render_legal_page(lang, which, sections, title_txt):
     """which: 'privacy' or 'terms'. sections: list of (h2, [paragraphs])."""
     if lang == "en":
         if which == "privacy":
-            canon = "/privacy-policy.html"
-            alt = "/politica-de-privacidad.html"
+            canon = clean_url("privacy-policy")
+            alt = clean_url("politica-de-privacidad")
         else:
-            canon = "/terms-and-conditions.html"
-            alt = "/terminos-y-condiciones.html"
+            canon = clean_url("terms-and-conditions")
+            alt = clean_url("terminos-y-condiciones")
     else:
         if which == "privacy":
-            canon = "/politica-de-privacidad.html"
-            alt = "/privacy-policy.html"
+            canon = clean_url("politica-de-privacidad")
+            alt = clean_url("privacy-policy")
         else:
-            canon = "/terminos-y-condiciones.html"
-            alt = "/terms-and-conditions.html"
+            canon = clean_url("terminos-y-condiciones")
+            alt = clean_url("terms-and-conditions")
 
     description = (title_txt + " — " + BUSINESS_NAME)[:160]
     full_title = title_txt + " | " + BUSINESS_NAME
@@ -1120,13 +1130,13 @@ TERMS_ES_SECTIONS = [
 
 
 def build_legal_pages():
-    write_file("privacy-policy.html",
+    write_file(clean_file("privacy-policy"),
                render_legal_page("en", "privacy", PRIVACY_EN_SECTIONS, "Privacy Policy"))
-    write_file("terms-and-conditions.html",
+    write_file(clean_file("terms-and-conditions"),
                render_legal_page("en", "terms", TERMS_EN_SECTIONS, "Terms and Conditions"))
-    write_file("politica-de-privacidad.html",
+    write_file(clean_file("politica-de-privacidad"),
                render_legal_page("es", "privacy", PRIVACY_ES_SECTIONS, "Política de Privacidad"))
-    write_file("terminos-y-condiciones.html",
+    write_file(clean_file("terminos-y-condiciones"),
                render_legal_page("es", "terms", TERMS_ES_SECTIONS, "Términos y Condiciones"))
 
 
@@ -1159,17 +1169,17 @@ def build_404():
 # ── Build: sitemap, robots, gitignore ────────────────────────────────────────
 
 def build_support_files():
-    urls = ["/", "/" + HOME_ES_FILE]
+    urls = ["/", HOME_ES_PATH]
     for s in SERVICES:
-        urls.append("/" + s["slug_en"] + ".html")
-        urls.append("/" + s["slug_es"] + ".html")
-    urls += ["/privacy-policy.html", "/terms-and-conditions.html",
-             "/politica-de-privacidad.html", "/terminos-y-condiciones.html"]
+        urls.append(clean_url(s["slug_en"]))
+        urls.append(clean_url(s["slug_es"]))
+    urls += [clean_url("privacy-policy"), clean_url("terms-and-conditions"),
+             clean_url("politica-de-privacidad"), clean_url("terminos-y-condiciones")]
 
     today = datetime.date.today().isoformat()
     url_blocks = []
     for u in urls:
-        priority = "1.0" if u == "/" else ("0.9" if u == "/" + HOME_ES_FILE else
+        priority = "1.0" if u == "/" else ("0.9" if u == HOME_ES_PATH else
                                             "0.3" if "policy" in u or "terms" in u or "politica" in u or "terminos" in u else "0.8")
         url_blocks.append(f"""  <url>
     <loc>https://{DOMAIN}{u}</loc>

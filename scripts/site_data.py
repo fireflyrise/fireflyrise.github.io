@@ -24,9 +24,10 @@ BUSINESS = {
 }
 
 HOME_EN_PATH = "/"
-HOME_EN_FILE = "index.html"
-HOME_ES_FILE = "marketing-digital-para-servicios-del-hogar.html"
-HOME_ES_PATH = "/" + HOME_ES_FILE
+HOME_EN_FILE = "index.html"                              # served from root
+HOME_ES_SLUG = "marketing-digital-para-servicios-del-hogar"
+HOME_ES_FILE = HOME_ES_SLUG + "/index.html"              # served from folder
+HOME_ES_PATH = "/" + HOME_ES_SLUG + "/"                  # clean URL (no .html)
 
 # ── Services ──────────────────────────────────────────────────────────────────
 # Each service has rich content for its dedicated page.
