@@ -40,7 +40,7 @@
 
   --section-padding-mobile: var(--space-xl) var(--space-sm);
   --section-padding-desktop: var(--space-2xl) var(--space-lg);
-  --container-max-width: 1100px;
+  --container-max-width: 1200px;
 }
 
 /* ── Reset ── */
