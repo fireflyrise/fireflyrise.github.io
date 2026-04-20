@@ -75,7 +75,6 @@ h4 { font-size: 1.1rem; }
 p, li, label, input, textarea, select, blockquote {
   font-family: 'Open Sans', sans-serif;
 }
-p { max-width: 65ch; }
 
 /* ── Container & Section ── */
 .container {
@@ -390,7 +389,7 @@ section {
   color: #ffffff;
   margin-bottom: var(--space-lg);
   margin-top: 0;
-  max-width: 65ch;
+  max-width: 100%;
   line-height: 1.5;
 }
 .hero-ctas {
@@ -432,13 +431,13 @@ section {
 }
 .section-intro {
   width: 100%;
+  max-width: 100%;
   text-align: left;
   margin-top: 0;
   margin-bottom: var(--space-lg);
   font-size: 1rem;
   line-height: 1.7;
   color: var(--color-text-dark);
-  max-width: 75ch;
 }
 .why-us-grid {
   display: grid;
