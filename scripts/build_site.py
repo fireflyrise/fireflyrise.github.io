@@ -26,6 +26,19 @@ def clean_url(slug):
 def clean_file(slug):
     """slug/index.html — the filesystem output path."""
     return slug + "/index.html"
+
+
+def h1_from_title(title):
+    """Strip the business name from an SEO <title> so the on-page h1 shows
+    only the distinctive part. Keeps the <title> intact for SEO while the
+    on-page heading stays clean. Handles both 'BRAND | X' and 'X | BRAND'."""
+    prefix = BUSINESS["name"] + " | "
+    suffix = " | " + BUSINESS["name"]
+    if title.startswith(prefix):
+        return title[len(prefix):]
+    if title.endswith(suffix):
+        return title[:-len(suffix)]
+    return title
 from faqs_data import FAQS_EN, FAQS_ES
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -408,13 +421,15 @@ def render_nav(lang, current_path):
 
 
 def render_hero(lang, seo_title, headline, body, bg_image):
-    """seo_title is the exact <title> content — rendered as the page's h1."""
+    """seo_title is the exact <title> content. The on-page h1 drops the
+    business-name portion (kept only in the <title> tag for SEO)."""
     L = LABELS[lang]
     SH = SECTION_HEADINGS[lang]
+    h1_text = h1_from_title(seo_title)
     return f"""<section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('/images/{bg_image}');">
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title">{html_escape(seo_title)}</h1>
+      <h1 class="hero-title">{html_escape(h1_text)}</h1>
       <h2 class="hero-headline">{html_escape(headline)}</h2>
       <p class="hero-body">{html_escape(body)}</p>
       <div class="hero-ctas">
@@ -937,7 +952,7 @@ def render_legal_page(lang, which, sections, title_txt):
     main_html = f"""<main class="legal-page">
   <div class="container">
     <div class="legal-content">
-        <h1>{html_escape(full_title)}</h1>
+        <h1>{html_escape(title_txt)}</h1>
         <p class="legal-meta">{html_escape(last_updated)}</p>
 {sections_html}    </div>
   </div>
@@ -1150,7 +1165,7 @@ def build_404():
     main = f"""<main class="error-page">
   <div class="error-content">
     <div class="error-mark" aria-hidden="true">404</div>
-    <h1>{html_escape(title)}</h1>
+    <h1>{html_escape(h1_from_title(title))}</h1>
     <p class="error-sub">This page took a wrong turn — but you don't have to. Most of the good stuff is one click away. Head back home, or tap the Call button and we'll point you to exactly what you need.</p>
     <div class="hero-ctas" style="justify-content:center;">
       <a href="/" class="btn-primary">Back To Home</a>
