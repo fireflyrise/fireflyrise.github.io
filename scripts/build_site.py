@@ -377,10 +377,8 @@ def render_nav(lang, current_path):
     # About anchor
     if lang == "en":
         about_anchor = "/#about-us"
-        lang_toggle_href = HOME_ES_PATH
     else:
         about_anchor = HOME_ES_PATH + "#about-us"
-        lang_toggle_href = "/"
 
     privacy_path = clean_url("privacy-policy") if lang == "en" else clean_url("politica-de-privacidad")
     terms_path = clean_url("terms-and-conditions") if lang == "en" else clean_url("terminos-y-condiciones")
@@ -413,7 +411,6 @@ def render_nav(lang, current_path):
           <li><a href="{terms_path}">{L['nav_terms']}</a></li>
         </ul>
       </li>
-      <li><a href="{lang_toggle_href}" class="lang-toggle" aria-label="{L['lang_aria']}">🌐 {L['lang_toggle']}</a></li>
     </ul>
   </div>
 </nav>
@@ -426,9 +423,14 @@ def render_hero(lang, seo_title, headline, body, bg_image):
     L = LABELS[lang]
     SH = SECTION_HEADINGS[lang]
     h1_text = h1_from_title(seo_title)
+    lang_toggle_href = HOME_ES_PATH if lang == "en" else "/"
     return f"""<section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('/images/{bg_image}');">
   <div class="container">
     <div class="hero-content">
+      <a href="{lang_toggle_href}" class="lang-toggle hero-lang-toggle" aria-label="{L['lang_aria']}">
+        <i class="fa-solid fa-language" aria-hidden="true"></i>
+        <span>{L['lang_toggle']}</span>
+      </a>
       <h1 class="hero-title">{html_escape(h1_text)}</h1>
       <h2 class="hero-headline">{html_escape(headline)}</h2>
       <p class="hero-body">{html_escape(body)}</p>

@@ -259,13 +259,12 @@ section {
   color: #ffffff;
 }
 
-/* Language toggle */
+/* Language toggle — default (for any context on a light bg) */
 .lang-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.9rem;
-  margin-left: 0.5rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
   border: 2px solid var(--color-primary);
   border-radius: 4px;
   color: var(--color-primary);
@@ -275,11 +274,26 @@ section {
   font-size: 0.8rem;
   text-decoration: none;
   letter-spacing: 0.05em;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
+.lang-toggle i { font-size: 1rem; line-height: 1; }
 .lang-toggle:hover {
   background: var(--color-primary);
   color: var(--color-text-light);
+  border-color: var(--color-primary);
+}
+
+/* Hero variant — sits above the h1 on the dark overlay */
+.hero-lang-toggle {
+  margin-bottom: var(--space-sm);
+  background: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.hero-lang-toggle:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
 }
 
 /* Hamburger */
