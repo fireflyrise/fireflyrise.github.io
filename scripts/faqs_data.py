@@ -20,22 +20,22 @@ FAQS_EN = {
             "a": "No. Firefly Rise supports every home service trade: plumbing, HVAC, electrical, roofing, landscaping, painting, pest control, garage door, remodeling, restoration, concrete, fencing, cleaning, and more. If you send a technician to a homeowner's property, you're exactly who this agency is built for."
         },
         {
-            "q": "Can I see exactly where my ad spend is going?",
-            "a": "Yes — and you should be able to, from any agency you hire. You'll get access to your own Google Ads and Facebook ad accounts (in your name, not ours), a real-time call tracking dashboard, and a weekly report that shows every call, every cost, and every source. No black boxes. No vanity metrics. If an agency can't show you exactly where your money went, run."
+            "q": "Can I see exactly what's happening with my campaigns?",
+            "a": "Yes — and you should be able to, from any agency you hire. You'll get access to your own Google Ads and Facebook ad accounts (in your name, not ours), a real-time call tracking dashboard, and a weekly report that shows every call and its source. No black boxes. No vanity metrics. If an agency can't show you exactly what's happening in your campaigns, run."
         },
         {
             "q": "What's the first step to get started?",
-            "a": "Tap the Call button or open the free-strategy-call form on this page. The first conversation is a short, no-pressure call to understand your business, your service area, and where you feel stuck. If what you need isn't something that fits, you'll be told directly — and pointed in the right direction. If it is a fit, you'll get a clear plan, clear pricing, and clear next steps. No long pitch deck, no pressure."
+            "a": "Tap the Call button or open the free-strategy-call form on this page. The first conversation is a short, no-pressure call to understand your business, your service area, and where you feel stuck. If what you need isn't something that fits, you'll be told directly — and pointed in the right direction. If it is a fit, you'll get a clear plan and clear next steps. No long pitch deck, no pressure."
         },
     ],
     "google-ads-management": [
         {
-            "q": "I've run Google Ads before and lost money — why would this be different?",
-            "a": "Most home service contractors lose money on Google Ads because they're running generic campaigns built on broad match keywords, pointing to a homepage that doesn't convert, with no call tracking to see what's actually working. Firefly builds campaigns exclusively for home service trades — tight keyword lists, negative keywords layered on week one, dedicated landing pages, and call tracking from day one — so every dollar is accountable and you can see exactly what's earning."
+            "q": "I've run Google Ads before and got nothing — why would this be different?",
+            "a": "Most home service contractors see no return on Google Ads because they're running generic campaigns built on broad match keywords, pointing to a homepage that doesn't convert, with no call tracking to see what's actually working. Firefly builds campaigns exclusively for home service trades — tight keyword lists, negative keywords layered on week one, dedicated landing pages, and call tracking from day one — so every campaign is accountable and you can see exactly what's earning its keep."
         },
         {
-            "q": "How much do I need to spend on ads?",
-            "a": "Your ad budget is set by what you want to produce, not what the agency wants to charge. You'll get a recommended minimum based on your service area, competition, and target call volume — most home service contractors start between $1,500 and $5,000 a month in ad spend. Whatever you spend, every dollar is tracked and transparent. You'll never be pushed to spend more than the math supports."
+            "q": "How will I know if my Google Ads are actually working?",
+            "a": "Every lead, every phone call, and every booked job gets tied back to the exact ad, keyword, and campaign that produced it. You'll see a plain-English weekly report showing what's working, what's being killed, and what's being scaled — not a pile of impressions and clicks that mean nothing. If a campaign isn't earning its keep, it gets cut. If it is, it gets more fuel. You'll always know where you stand, in real time."
         },
         {
             "q": "Who owns the Google Ads account?",
@@ -43,7 +43,7 @@ FAQS_EN = {
         },
         {
             "q": "Will you tell me which keywords are actually driving calls?",
-            "a": "Yes. Every call gets attributed back to the exact keyword, ad group, and campaign that generated it — not just the click. That means you'll see which keywords are producing booked jobs versus which are just burning money, and budget gets shifted accordingly every week. No guessing, no hoping."
+            "a": "Yes. Every call gets attributed back to the exact keyword, ad group, and campaign that generated it — not just the click. That means you'll see which keywords are producing booked jobs versus which are quietly going nowhere, and campaigns get adjusted accordingly every week. No guessing, no hoping."
         },
         {
             "q": "How quickly will my phone start ringing?",
@@ -77,7 +77,7 @@ FAQS_EN = {
         },
         {
             "q": "How soon will I see leads from Facebook?",
-            "a": "Most contractors see their first Facebook leads within 7–14 days of launch, once Meta's delivery system has learned from the initial data. Volume and cost per lead typically improve significantly through the first 30–45 days as the algorithm optimizes. You'll see exactly how many leads each ad is producing in your weekly report, along with which creative is winning."
+            "a": "Most contractors see their first Facebook leads within 7–14 days of launch, once Meta's delivery system has learned from the initial data. Lead volume and quality typically improve significantly through the first 30–45 days as the algorithm optimizes. You'll see exactly how many leads each ad is producing in your weekly report, along with which creative is winning."
         },
     ],
     "website-design-development": [
@@ -121,11 +121,11 @@ FAQS_EN = {
         },
         {
             "q": "How fast do landing pages load?",
-            "a": "Every landing page is engineered for sub-2-second load times on mobile 4G. Page speed is one of the largest factors in both conversion rate and ad quality score (which lowers your cost per click). Slow pages quietly cost you money on both sides — faster pages produce more leads at lower ad costs."
+            "a": "Every landing page is engineered for sub-2-second load times on mobile 4G. Page speed is one of the largest factors in both conversion rate and ad quality score. Slow pages quietly sink your performance on both sides — faster pages produce more leads and rank better in ad auctions."
         },
         {
             "q": "Will I be able to see how my landing pages are performing?",
-            "a": "Yes. Every landing page is tracked with clear metrics — visitors, form submissions, phone calls, bounce rate, and cost per lead tied back to the exact ad, keyword, or campaign that produced each visitor. You'll see what's working and what isn't in a weekly report, not buried in a Google Analytics dashboard no one has time to open."
+            "a": "Yes. Every landing page is tracked with clear metrics — visitors, form submissions, phone calls, bounce rate, and lead volume tied back to the exact ad, keyword, or campaign that produced each visitor. You'll see what's working and what isn't in a weekly report, not buried in a Google Analytics dashboard no one has time to open."
         },
         {
             "q": "How long does it take to build a landing page?",
@@ -135,7 +135,7 @@ FAQS_EN = {
     "lead-generation": [
         {
             "q": "How are these leads different from HomeAdvisor or Angi?",
-            "a": "HomeAdvisor, Angi, and Thumbtack sell the same lead to five different contractors and let you fight over it — usually a race to the bottom on price. Firefly's exclusive leads are generated specifically for your service area and sent only to you. The homeowner only talks to you. No bidding war, no competing quotes, no race to the bottom."
+            "a": "HomeAdvisor, Angi, and Thumbtack sell the same lead to five different contractors and let you fight over it — usually a race to the bottom. Firefly's exclusive leads are generated specifically for your service area and sent only to you. The homeowner only talks to you. No bidding war, no competing quotes, no race to the bottom."
         },
         {
             "q": "What does an 'exclusive lead' actually mean?",
@@ -151,7 +151,7 @@ FAQS_EN = {
         },
         {
             "q": "What if I get a lead that isn't actually qualified?",
-            "a": "If a lead is duplicate, fake, a wrong number, or outside your service area, it gets replaced at no cost. You won't pay for junk — that's baked into how the program works. Bad leads hurt both of us, so the filtering happens upfront, and the replacement policy catches anything that slips through."
+            "a": "If a lead is duplicate, fake, a wrong number, or outside your service area, it gets replaced automatically. Bad leads hurt both of us, so the filtering happens upfront, and the replacement policy catches anything that slips through. You'll always get the exclusive, qualified homeowners you signed up for."
         },
         {
             "q": "How many leads can I expect?",
@@ -199,7 +199,7 @@ FAQS_EN = {
         },
         {
             "q": "What happens if my listing gets suspended?",
-            "a": "GBP suspensions happen — often triggered by mistakes like inconsistent addresses, too many edits at once, or service-area misconfigurations. Reinstatement is included at no additional cost. Firefly handles the full reinstatement process directly with Google, which typically resolves within 5–14 days if the underlying issue is cleaned up correctly."
+            "a": "GBP suspensions happen — often triggered by mistakes like inconsistent addresses, too many edits at once, or service-area misconfigurations. Reinstatement is handled as part of the program. Firefly works directly with Google through the full reinstatement process, which typically resolves within 5–14 days if the underlying issue is cleaned up correctly."
         },
         {
             "q": "Can you help me get more Google reviews too?",
@@ -229,7 +229,7 @@ FAQS_EN = {
         },
         {
             "q": "What if my website traffic is already low?",
-            "a": "That's when CRO matters most. Low-traffic sites can't afford to waste visitors — every single one has to count. A focused CRO program on a low-traffic site often produces a higher percentage lift than on a high-traffic one because each change matters more. It also lowers the cost of paid ads by improving landing page quality scores."
+            "a": "That's when CRO matters most. Low-traffic sites can't afford to waste visitors — every single one has to count. A focused CRO program on a low-traffic site often produces a higher percentage lift than on a high-traffic one because each change matters more. It also improves landing page quality scores, which quietly helps every paid ad perform better."
         },
         {
             "q": "Do I need to change my whole website?",
@@ -239,7 +239,7 @@ FAQS_EN = {
     "call-tracking-analytics": [
         {
             "q": "What is call tracking, exactly?",
-            "a": "Call tracking replaces your phone numbers with dynamic tracking numbers across your website and ads. When a homeowner calls, the system records which ad, keyword, landing page, or traffic source drove that exact call — and then forwards the call straight to your business phone, invisibly. You get a full picture of which marketing dollars produced which calls."
+            "a": "Call tracking replaces your phone numbers with dynamic tracking numbers across your website and ads. When a homeowner calls, the system records which ad, keyword, landing page, or traffic source drove that exact call — and then forwards the call straight to your business phone, invisibly. You get a full picture of which marketing efforts produced which calls."
         },
         {
             "q": "Will the tracking numbers confuse my customers?",
@@ -273,7 +273,7 @@ FAQS_EN = {
         },
         {
             "q": "Can I keep my current logo?",
-            "a": "If your current logo works, yes — the rest of the brand system can be built around it. If your current logo is holding you back (outdated, hard to read, generic), a refresh or full redesign is recommended. That conversation happens honestly up front so you don't pay for something you don't need — or skip something that's silently costing you jobs."
+            "a": "If your current logo works, yes — the rest of the brand system can be built around it. If your current logo is holding you back (outdated, hard to read, generic), a refresh or full redesign is recommended. That conversation happens honestly up front so you get what you actually need — and don't skip something that's silently losing you jobs."
         },
         {
             "q": "How long does a full rebrand take?",
@@ -310,21 +310,21 @@ FAQS_ES = {
         },
         {
             "q": "¿Puedo ver exactamente a dónde va mi inversión en anuncios?",
-            "a": "Sí — y deberías poder, con cualquier agencia que contrates. Obtendrás acceso a tus propias cuentas de Google Ads y Facebook (a tu nombre, no al nuestro), un tablero de seguimiento de llamadas en tiempo real, y un reporte semanal que muestra cada llamada, cada costo, y cada fuente. Sin cajas negras. Sin métricas vacías. Si una agencia no puede mostrarte exactamente a dónde fue tu dinero, corre."
+            "a": "Sí — y deberías poder, con cualquier agencia que contrates. Obtendrás acceso a tus propias cuentas de Google Ads y Facebook (a tu nombre, no al nuestro), un tablero de seguimiento de llamadas en tiempo real, y un reporte semanal que muestra cada llamada y su fuente. Sin cajas negras. Sin métricas vacías. Si una agencia no puede mostrarte exactamente qué pasa en tus campañas, corre."
         },
         {
             "q": "¿Cuál es el primer paso para empezar?",
-            "a": "Toca el botón de llamada o abre el formulario de llamada gratis de estrategia en esta página. La primera conversación es una llamada corta y sin presión para entender tu negocio, tu área de servicio, y dónde te sientes atascado. Si lo que necesitas no encaja, te lo diremos directamente — y te apuntaremos en la dirección correcta. Si encaja, recibirás un plan claro, precios claros, y siguientes pasos claros."
+            "a": "Toca el botón de llamada o abre el formulario de llamada gratis de estrategia en esta página. La primera conversación es una llamada corta y sin presión para entender tu negocio, tu área de servicio, y dónde te sientes atascado. Si lo que necesitas no encaja, te lo diremos directamente — y te apuntaremos en la dirección correcta. Si encaja, recibirás un plan claro y siguientes pasos claros."
         },
     ],
     "administracion-de-google-ads": [
         {
-            "q": "Ya he corrido Google Ads antes y perdí dinero — ¿por qué sería diferente esto?",
-            "a": "La mayoría de contratistas pierde dinero en Google Ads porque corren campañas genéricas con palabras clave de concordancia amplia, apuntando a una página principal que no convierte, sin seguimiento de llamadas. Firefly construye campañas exclusivamente para servicios del hogar — listas ajustadas de palabras clave, negativas desde la semana uno, páginas de aterrizaje dedicadas, y seguimiento de llamadas desde el día uno — para que cada dólar sea responsable y puedas ver exactamente qué está ganando."
+            "q": "Ya he corrido Google Ads antes y no obtuve nada — ¿por qué sería diferente esto?",
+            "a": "La mayoría de contratistas no ve retorno en Google Ads porque corren campañas genéricas con palabras clave de concordancia amplia, apuntando a una página principal que no convierte, sin seguimiento de llamadas. Firefly construye campañas exclusivamente para servicios del hogar — listas ajustadas de palabras clave, negativas desde la semana uno, páginas de aterrizaje dedicadas, y seguimiento de llamadas desde el día uno — para que cada campaña sea responsable y puedas ver exactamente qué está ganando su lugar."
         },
         {
-            "q": "¿Cuánto necesito gastar en anuncios?",
-            "a": "Tu presupuesto se define por lo que quieres producir, no por lo que la agencia quiere cobrar. Obtendrás un mínimo recomendado basado en tu área, competencia, y volumen objetivo — la mayoría de contratistas empieza entre $1,500 y $5,000 al mes en anuncios. Lo que gastes es rastreado y transparente. Nunca te presionarán a gastar más de lo que la matemática soporte."
+            "q": "¿Cómo sabré si mis Google Ads realmente están funcionando?",
+            "a": "Cada lead, cada llamada, y cada trabajo agendado se liga al anuncio, palabra clave, y campaña exacta que lo produjo. Verás un reporte semanal en lenguaje sencillo que muestra qué está funcionando, qué se está matando, y qué se está escalando — no un montón de impresiones y clics que no significan nada. Si una campaña no rinde, se corta. Si rinde, recibe más combustible. Siempre sabrás dónde estás, en tiempo real."
         },
         {
             "q": "¿Quién es dueño de la cuenta de Google Ads?",
@@ -332,7 +332,7 @@ FAQS_ES = {
         },
         {
             "q": "¿Me dirán qué palabras clave están generando llamadas?",
-            "a": "Sí. Cada llamada se atribuye a la palabra clave, grupo de anuncios y campaña exacta que la generó — no solo el clic. Verás qué palabras clave producen trabajos versus cuáles queman dinero, y el presupuesto se ajusta cada semana. Sin adivinar."
+            "a": "Sí. Cada llamada se atribuye a la palabra clave, grupo de anuncios y campaña exacta que la generó — no solo el clic. Verás qué palabras clave producen trabajos versus cuáles no están rindiendo, y las campañas se ajustan cada semana. Sin adivinar."
         },
         {
             "q": "¿Qué tan rápido empezará a sonar mi teléfono?",
@@ -346,7 +346,7 @@ FAQS_ES = {
     "anuncios-en-facebook-y-meta": [
         {
             "q": "¿Realmente funciona Facebook para servicios del hogar?",
-            "a": "Sí — cuando se hace bien. La mayoría de contratistas que dicen 'Facebook no funciona' corrieron publicaciones promocionadas o anuncios con segmentación amplia esperando llamadas. No es así como gana Facebook. El enfoque correcto es hiperlocal, con creativos fuertes, y basado en embudo. Hecho bien, Facebook regularmente produce leads a un 30–50% menos costo que Google."
+            "a": "Sí — cuando se hace bien. La mayoría de contratistas que dicen 'Facebook no funciona' corrieron publicaciones promocionadas o anuncios con segmentación amplia esperando llamadas. No es así como gana Facebook. El enfoque correcto es hiperlocal, con creativos fuertes, y basado en embudo. Hecho bien, Facebook regularmente produce leads que Google nunca habría alcanzado."
         },
         {
             "q": "¿No es Google el único lugar donde los dueños buscan contratistas?",
@@ -366,7 +366,7 @@ FAQS_ES = {
         },
         {
             "q": "¿Qué tan pronto veré leads de Facebook?",
-            "a": "La mayoría ve sus primeros leads en 7–14 días después del lanzamiento, una vez que el sistema de Meta ha aprendido de los datos iniciales. Volumen y costo por lead mejoran significativamente en los primeros 30–45 días mientras el algoritmo optimiza."
+            "a": "La mayoría ve sus primeros leads en 7–14 días después del lanzamiento, una vez que el sistema de Meta ha aprendido de los datos iniciales. El volumen y la calidad de los leads mejoran significativamente en los primeros 30–45 días mientras el algoritmo optimiza."
         },
     ],
     "diseno-y-desarrollo-web": [
@@ -410,11 +410,11 @@ FAQS_ES = {
         },
         {
             "q": "¿Qué tan rápido cargan las páginas?",
-            "a": "Cada página está diseñada para tiempos de carga menores a 2 segundos en móvil 4G. La velocidad es uno de los factores más grandes tanto en la tasa de conversión como en el Quality Score de tus anuncios (lo cual baja tu costo por clic). Páginas lentas te cuestan dinero por ambos lados."
+            "a": "Cada página está diseñada para tiempos de carga menores a 2 segundos en móvil 4G. La velocidad es uno de los factores más grandes tanto en la tasa de conversión como en el Quality Score de tus anuncios. Páginas lentas hunden tu desempeño por ambos lados — páginas rápidas producen más leads y rankean mejor en las subastas de anuncios."
         },
         {
             "q": "¿Podré ver cómo están rindiendo mis páginas?",
-            "a": "Sí. Cada página se rastrea con métricas claras — visitantes, envíos de formulario, llamadas telefónicas, tasa de rebote, y costo por lead ligado al anuncio, palabra clave, o campaña exacta que produjo cada visitante."
+            "a": "Sí. Cada página se rastrea con métricas claras — visitantes, envíos de formulario, llamadas telefónicas, tasa de rebote, y volumen de leads ligado al anuncio, palabra clave, o campaña exacta que produjo cada visitante."
         },
         {
             "q": "¿Cuánto tarda construir una página de aterrizaje?",
@@ -424,7 +424,7 @@ FAQS_ES = {
     "generacion-de-prospectos": [
         {
             "q": "¿En qué se diferencian estos leads de HomeAdvisor o Angi?",
-            "a": "HomeAdvisor, Angi, y Thumbtack venden el mismo lead a cinco contratistas diferentes y los hacen pelear — usualmente una carrera al fondo en precio. Los leads exclusivos de Firefly se generan específicamente para tu área de servicio y se envían solo a ti. El dueño solo habla contigo."
+            "a": "HomeAdvisor, Angi, y Thumbtack venden el mismo lead a cinco contratistas diferentes y los hacen pelear — usualmente una carrera al fondo. Los leads exclusivos de Firefly se generan específicamente para tu área de servicio y se envían solo a ti. El dueño solo habla contigo."
         },
         {
             "q": "¿Qué significa un 'lead exclusivo' exactamente?",
@@ -440,7 +440,7 @@ FAQS_ES = {
         },
         {
             "q": "¿Qué pasa si recibo un lead que no está calificado?",
-            "a": "Si un lead es duplicado, falso, número equivocado, o fuera de tu área, se reemplaza sin costo. No pagarás por basura — eso está incluido en cómo funciona el programa. Los malos leads nos lastiman a ambos."
+            "a": "Si un lead es duplicado, falso, número equivocado, o fuera de tu área, se reemplaza automáticamente. Los malos leads nos lastiman a ambos, así que el filtrado pasa por adelante, y la política de reemplazo atrapa lo que se escape. Siempre recibirás los dueños exclusivos y calificados por los que te inscribiste."
         },
         {
             "q": "¿Cuántos leads puedo esperar?",
@@ -488,7 +488,7 @@ FAQS_ES = {
         },
         {
             "q": "¿Qué pasa si mi listado es suspendido?",
-            "a": "Las suspensiones de GBP pasan — a menudo por errores como direcciones inconsistentes, demasiadas ediciones a la vez, o mala configuración. La reinstalación se incluye sin costo adicional. Firefly maneja el proceso completo directamente con Google, que típicamente se resuelve en 5–14 días."
+            "a": "Las suspensiones de GBP pasan — a menudo por errores como direcciones inconsistentes, demasiadas ediciones a la vez, o mala configuración. La reinstalación es parte del programa. Firefly trabaja directamente con Google durante todo el proceso, que típicamente se resuelve en 5–14 días si el problema subyacente se limpia correctamente."
         },
         {
             "q": "¿Pueden ayudarme a obtener más reseñas en Google también?",

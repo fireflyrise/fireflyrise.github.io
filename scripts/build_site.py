@@ -176,9 +176,9 @@ SECTION_HEADINGS = {
         "step1_t": "Call Or Fill Out The Form — No Pressure, No Pitch Deck",
         "step1_b": "Reach out and a real strategist will get on the phone with you within one business hour. You'll have a short, honest conversation about your business, your goals, and where you feel stuck. If this isn't a fit, you'll be told directly.",
         "step2_t": "Get A Clear Strategy Built Around Your Business",
-        "step2_b": "You'll get a plain-English plan that shows exactly what needs to change, what it will cost, and what you can expect in return. No long slide decks, no jargon, no commitment to sign anything on the spot.",
+        "step2_b": "You'll get a plain-English plan that shows exactly what needs to change, what happens first, and what you can expect in return. No long slide decks, no jargon, no commitment to sign anything on the spot.",
         "step3_t": "Watch Your Phone Start Ringing — And Stay Ringing",
-        "step3_b": "Campaigns go live fast, every dollar is tracked from the first click to the booked job, and you get transparent weekly reports. Adjustments happen every week so the system keeps getting better, not stale.",
+        "step3_b": "Campaigns go live fast, every campaign is tracked from the first click to the booked job, and you get transparent weekly reports. Adjustments happen every week so the system keeps getting better, not stale.",
         "faqs_title": "Straight Answers To The Questions You're Already Asking",
         "faqs_intro": "It's smart to do your homework before handing your marketing to anyone. The answers below are direct — not sales fluff. If what you need isn't here, reach out using the buttons on this page and get a straight answer from a real human.",
         "service_card_link": "See the details →",
@@ -199,9 +199,9 @@ SECTION_HEADINGS = {
         "step1_t": "Llama O Llena El Formulario — Sin Presión, Sin Presentación",
         "step1_b": "Comunícate y un estratega real se pondrá en el teléfono contigo en una hora hábil. Tendrás una conversación corta y honesta sobre tu negocio, metas, y dónde te sientes atorado. Si no encaja, te lo diremos directamente.",
         "step2_t": "Recibe Una Estrategia Clara Creada Para Tu Negocio",
-        "step2_b": "Recibirás un plan en lenguaje sencillo que muestra exactamente qué necesita cambiar, cuánto costará, y qué esperar a cambio. Sin presentaciones largas, sin jerga, sin compromiso de firmar nada en el momento.",
+        "step2_b": "Recibirás un plan en lenguaje sencillo que muestra exactamente qué necesita cambiar, qué pasa primero, y qué esperar a cambio. Sin presentaciones largas, sin jerga, sin compromiso de firmar nada en el momento.",
         "step3_t": "Observa Cómo Empieza A Sonar Tu Teléfono — Y Sigue Sonando",
-        "step3_b": "Las campañas se lanzan rápido, cada dólar se rastrea desde el primer clic hasta el trabajo agendado, y recibes reportes semanales transparentes. Los ajustes pasan cada semana para que el sistema mejore, no se estanque.",
+        "step3_b": "Las campañas se lanzan rápido, cada campaña se rastrea desde el primer clic hasta el trabajo agendado, y recibes reportes semanales transparentes. Los ajustes pasan cada semana para que el sistema mejore, no se estanque.",
         "faqs_title": "Respuestas Directas A Las Preguntas Que Ya Te Estás Haciendo",
         "faqs_intro": "Es inteligente hacer tu tarea antes de entregar tu marketing a alguien. Las respuestas de abajo son directas — sin relleno de ventas. Si lo que necesitas no está aquí, usa los botones en esta página y recibe una respuesta directa de una persona real.",
         "service_card_link": "Ver los detalles →",
@@ -238,12 +238,12 @@ WHY_US_CARDS = {
         {
             "icon": "fa-solid fa-bullseye",
             "h3": "Built Exclusively For Home Service Contractors",
-            "p": "You don't need a generalist agency juggling restaurants and real estate between your campaigns. Every strategist, every campaign, every dollar goes into serving home service trades — which means faster wins, sharper campaigns, and zero learning curve on your industry.",
+            "p": "You don't need a generalist agency juggling restaurants and real estate between your campaigns. Every strategist and every campaign is focused on serving home service trades — which means faster wins, sharper campaigns, and zero learning curve on your industry.",
         },
         {
             "icon": "fa-solid fa-chart-line",
             "h3": "Transparent Reporting Tied To Real Phone Calls",
-            "p": "No vanity metrics, no black boxes. You see every ad, every keyword, every dollar, and every call that it produced. Weekly updates land in your inbox like clockwork so you always know what's working, what's being killed, and what's being scaled.",
+            "p": "No vanity metrics, no black boxes. You see every ad, every keyword, and every call that it produced. Weekly updates land in your inbox like clockwork so you always know what's working, what's being killed, and what's being scaled.",
         },
         {
             "icon": "fa-solid fa-handshake",
@@ -255,12 +255,12 @@ WHY_US_CARDS = {
         {
             "icon": "fa-solid fa-bullseye",
             "h3": "Creado Exclusivamente Para Contratistas De Servicios Del Hogar",
-            "p": "No necesitas una agencia generalista malabareando restaurantes y bienes raíces entre tus campañas. Cada estratega, cada campaña, cada dólar va a servir a los oficios de servicios del hogar — lo que significa victorias más rápidas, campañas más afiladas, y cero curva de aprendizaje sobre tu industria.",
+            "p": "No necesitas una agencia generalista malabareando restaurantes y bienes raíces entre tus campañas. Cada estratega y cada campaña está enfocada en servir a los oficios de servicios del hogar — lo que significa victorias más rápidas, campañas más afiladas, y cero curva de aprendizaje sobre tu industria.",
         },
         {
             "icon": "fa-solid fa-chart-line",
             "h3": "Reportes Transparentes Ligados A Llamadas Reales",
-            "p": "Sin métricas vacías, sin cajas negras. Ves cada anuncio, cada palabra clave, cada dólar, y cada llamada que produjo. Actualizaciones semanales llegan a tu bandeja como reloj para que siempre sepas qué funciona, qué se está matando, y qué se está escalando.",
+            "p": "Sin métricas vacías, sin cajas negras. Ves cada anuncio, cada palabra clave, y cada llamada que produjo. Actualizaciones semanales llegan a tu bandeja como reloj para que siempre sepas qué funciona, qué se está matando, y qué se está escalando.",
         },
         {
             "icon": "fa-solid fa-handshake",
@@ -356,8 +356,7 @@ def render_head(page, lang, title, description, og_image, canonical_path, alt_pa
     "email": "{EMAIL}",
     "areaServed": {{"@type": "Country", "name": "United States"}},
     "description": "{BUSINESS['tagline_en'] if lang == 'en' else BUSINESS['tagline_es']}",
-    "image": "https://{DOMAIN}/images/{og_image}",
-    "priceRange": "$$"
+    "image": "https://{DOMAIN}/images/{og_image}"
   }}
   </script>
 </head>
@@ -1022,7 +1021,7 @@ TERMS_EN_SECTIONS = [
         f"{BUSINESS_NAME} provides digital marketing services exclusively for home service contractors across the United States, including {LEGAL_SERVICES_LIST_EN}. Service availability, scope, and deliverables are subject to the terms of each engagement agreement.",
     ]),
     ("3. Quotes And Estimates", [
-        f"Quotes and estimates provided through this website, phone, or email are preliminary and based on the information you share. Final pricing and scope are confirmed in writing before any work begins. {BUSINESS_NAME} reserves the right to adjust quotes as additional information or requirements become clear.",
+        f"Quotes and estimates provided through this website, phone, or email are preliminary and based on the information you share. Final scope and terms are confirmed in writing before any work begins. {BUSINESS_NAME} reserves the right to adjust quotes as additional information or requirements become clear.",
     ]),
     ("4. Engagement And Scheduling", [
         f"Engagements are scheduled based on available capacity and agreed timelines. {BUSINESS_NAME} will make reasonable efforts to honor scheduled start dates and deliverables. You agree to provide accurate business information, access to accounts needed for service delivery, and timely feedback so work can proceed.",
@@ -1031,7 +1030,7 @@ TERMS_EN_SECTIONS = [
         "Payment terms are specified in your engagement agreement. Invoices are due by the date shown on each invoice unless otherwise agreed in writing. Late payments may incur late fees and may result in a pause in active campaigns or services until the balance is resolved.",
     ]),
     ("6. Performance And Guarantees", [
-        f"{BUSINESS_NAME} commits to the scope of services outlined in your engagement agreement and delivers all work to professional industry standards. Marketing results are influenced by factors including market competition, ad spend, offer quality, and internal sales follow-up — so specific lead volume, call volume, or revenue outcomes are not guaranteed unless explicitly stated in writing.",
+        f"{BUSINESS_NAME} commits to the scope of services outlined in your engagement agreement and delivers all work to professional industry standards. Marketing results are influenced by many factors including market competition, offer quality, and internal sales follow-up — so specific lead volume, call volume, or revenue outcomes are not guaranteed unless explicitly stated in writing.",
     ]),
     ("7. Limitation Of Liability", [
         f"To the fullest extent permitted by law, {BUSINESS_NAME} is not liable for indirect, incidental, consequential, or punitive damages arising from your use of this website or our services. Total liability for any claim is limited to the amount paid for the specific service in question during the preceding three months.",
@@ -1113,7 +1112,7 @@ TERMS_ES_SECTIONS = [
         f"{BUSINESS_NAME} brinda servicios de marketing digital exclusivamente para contratistas de servicios del hogar en todo Estados Unidos, incluyendo {LEGAL_SERVICES_LIST_ES}. La disponibilidad, alcance, y entregables de los servicios están sujetos a los términos de cada acuerdo de servicio.",
     ]),
     ("3. Cotizaciones Y Estimados", [
-        f"Las cotizaciones y estimados proporcionados a través de este sitio, teléfono, o correo son preliminares y se basan en la información que compartes. Los precios finales y el alcance se confirman por escrito antes de comenzar cualquier trabajo. {BUSINESS_NAME} se reserva el derecho de ajustar cotizaciones.",
+        f"Las cotizaciones y estimados proporcionados a través de este sitio, teléfono, o correo son preliminares y se basan en la información que compartes. El alcance final y los términos se confirman por escrito antes de comenzar cualquier trabajo. {BUSINESS_NAME} se reserva el derecho de ajustar cotizaciones.",
     ]),
     ("4. Compromiso Y Programación", [
         f"Los compromisos se programan según capacidad disponible y cronogramas acordados. {BUSINESS_NAME} hará esfuerzos razonables para honrar las fechas de inicio programadas y los entregables. Aceptas proporcionar información precisa, acceso a cuentas necesarias, y retroalimentación oportuna.",
@@ -1122,7 +1121,7 @@ TERMS_ES_SECTIONS = [
         "Los términos de pago se especifican en tu acuerdo de servicio. Las facturas vencen en la fecha mostrada a menos que se acuerde por escrito. Los pagos tardíos pueden incurrir en cargos y pueden resultar en una pausa de las campañas o servicios activos hasta que se resuelva el saldo.",
     ]),
     ("6. Desempeño Y Garantías", [
-        f"{BUSINESS_NAME} se compromete al alcance de servicios delineado en tu acuerdo y entrega todo el trabajo con estándares profesionales de la industria. Los resultados de marketing están influenciados por factores que incluyen competencia de mercado, gasto en anuncios, calidad de oferta, y seguimiento interno de ventas — por lo tanto, resultados específicos de volumen de leads, llamadas, o ingresos no se garantizan a menos que se declare explícitamente por escrito.",
+        f"{BUSINESS_NAME} se compromete al alcance de servicios delineado en tu acuerdo y entrega todo el trabajo con estándares profesionales de la industria. Los resultados de marketing están influenciados por muchos factores que incluyen competencia de mercado, calidad de oferta, y seguimiento interno de ventas — por lo tanto, resultados específicos de volumen de leads, llamadas, o ingresos no se garantizan a menos que se declare explícitamente por escrito.",
     ]),
     ("7. Limitación De Responsabilidad", [
         f"Hasta el máximo permitido por la ley, {BUSINESS_NAME} no es responsable por daños indirectos, incidentales, consecuentes, o punitivos derivados de tu uso de este sitio o nuestros servicios. La responsabilidad total por cualquier reclamo se limita al monto pagado por el servicio específico en cuestión durante los tres meses anteriores.",
