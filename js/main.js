@@ -184,12 +184,31 @@
       var nameEl = overlay.querySelector('#modal-name');
       var phoneEl = overlay.querySelector('#modal-phone');
       var emailEl = overlay.querySelector('#modal-email');
+      var hpEl = overlay.querySelector('#modal-website');
       var errEl = overlay.querySelector('[data-step="3"] .modal-error');
       errEl.classList.remove('visible');
 
       var name = (nameEl.value || '').trim();
       var phone = (phoneEl.value || '').trim();
       var email = (emailEl.value || '').trim();
+      var honeypot = hpEl ? (hpEl.value || '').trim() : '';
+
+      // Honeypot — bots auto-fill the hidden "website" field; humans never see it.
+      // Show the success state so the bot thinks it worked, but never POST or burn a Pabbly task.
+      if (honeypot) {
+        if (window.console && console.log) {
+          console.log('[FireflyRise] Honeypot tripped, dropping submission silently.');
+        }
+        overlay.querySelector('.modal-form').style.display = 'none';
+        var hpSuccess = overlay.querySelector('.modal-success');
+        var hpNameSlot = hpSuccess.querySelector('.success-name');
+        if (hpNameSlot) hpNameSlot.textContent = (name.split(' ')[0] || '');
+        hpSuccess.classList.add('active');
+        setTimeout(function () {
+          if (overlay.classList.contains('modal-visible')) closeModal();
+        }, 6000);
+        return;
+      }
 
       if (!name || !phone || !email) {
         errEl.textContent = lang === 'es' ? 'Por favor completa todos los campos.' : 'Please fill in all fields.';

@@ -457,6 +457,11 @@
           <label for="modal-email">Email Address</label>
           <input type="email" id="modal-email" name="email" autocomplete="email" required>
         </div>
+        <!-- Honeypot — bots auto-fill this; humans never see it. JS rejects any submission with this field set. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="modal-website">Website (leave blank)</label>
+          <input type="text" id="modal-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="modal-error" role="alert"></div>
         <div class="modal-nav">
           <button class="btn-secondary" data-action="back" type="button">← Back</button>
