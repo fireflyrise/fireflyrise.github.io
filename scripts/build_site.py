@@ -748,7 +748,7 @@ def render_modal(lang):
         </div>
         <div class="modal-input-group">
           <label for="modal-phone">{L['modal_phone']}</label>
-          <input type="tel" id="modal-phone" name="phone" autocomplete="tel" required>
+          <input type="tel" id="modal-phone" name="phone" autocomplete="tel" inputmode="numeric" placeholder="(123) 456-7890" maxlength="14" required>
         </div>
         <div class="modal-input-group">
           <label for="modal-email">{L['modal_email']}</label>

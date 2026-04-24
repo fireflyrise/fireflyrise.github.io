@@ -156,6 +156,30 @@
     r.addEventListener('change', function () { state.step2 = r.value; });
   });
 
+  // Phone auto-formatter — formats as user types: (XXX) XXX-XXXX
+  function formatUSPhone(raw) {
+    var d = (raw || '').replace(/\D/g, '');
+    // Drop a leading "1" country code if pasted (e.g. 16028290009 → 6028290009)
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    d = d.slice(0, 10);
+    if (d.length === 0) return '';
+    if (d.length <= 3) return '(' + d;
+    if (d.length <= 6) return '(' + d.slice(0, 3) + ') ' + d.slice(3);
+    return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  }
+  var phoneInput = overlay.querySelector('#modal-phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      // Skip formatting on backspace at end so user can clear naturally
+      this.value = formatUSPhone(this.value);
+    });
+    phoneInput.addEventListener('paste', function (e) {
+      // Let the paste land, then reformat on the next tick
+      var self = this;
+      setTimeout(function () { self.value = formatUSPhone(self.value); }, 0);
+    });
+  }
+
   // Next / Back buttons
   overlay.querySelectorAll('[data-action="next"]').forEach(function (b) {
     b.addEventListener('click', function () {
