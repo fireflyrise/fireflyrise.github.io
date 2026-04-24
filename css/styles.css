@@ -259,46 +259,49 @@ section {
   color: #ffffff;
 }
 
-/* Language toggle — default (for any context on a light bg) */
+/* Language toggle — plain text link, NOT a button. Lives above the h1
+   (inside hero on regular pages, above h1 on legal pages and 404). */
 .lang-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.45rem 0.9rem;
-  border: 2px solid var(--color-primary);
-  border-radius: 4px;
-  color: var(--color-primary);
-  background: var(--color-bg-white);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 0.8rem;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-.lang-toggle i { font-size: 1rem; line-height: 1; }
-.lang-toggle:hover {
-  background: var(--color-primary);
-  color: var(--color-text-light);
-  border-color: var(--color-primary);
-}
-
-/* Hero variant — plain text link above the h1 (no button chrome) */
-.hero-lang-toggle {
+  gap: 0.4rem;
+  align-self: flex-start;
   margin-bottom: var(--space-sm);
   padding: 0;
-  background: transparent;
   border: none;
-  border-radius: 0;
-  color: #ffffff;
+  background: transparent;
+  color: #ffffff;  /* default = hero dark overlay */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  cursor: pointer;
   transform-origin: left center;
   transition: transform 0.2s ease, color 0.2s ease;
 }
-.hero-lang-toggle:hover {
-  background: transparent;
-  border: none;
+.lang-toggle i {
+  font-size: 1.05rem;
+  line-height: 1;
+  color: inherit;
+}
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
   color: var(--color-primary);
-  transform: scale(1.08);
+  transform: scale(1.1);
+}
+
+/* On light backgrounds (legal pages, 404) — dark text default */
+.legal-content .lang-toggle,
+.error-content .lang-toggle {
+  color: var(--color-text-dark);
+}
+.legal-content .lang-toggle:hover,
+.legal-content .lang-toggle:focus-visible,
+.error-content .lang-toggle:hover,
+.error-content .lang-toggle:focus-visible {
+  color: var(--color-primary);
+  transform: scale(1.1);
 }
 
 /* Hamburger */
@@ -383,6 +386,9 @@ section {
   margin: 0;
   text-align: left;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .hero-title {
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);

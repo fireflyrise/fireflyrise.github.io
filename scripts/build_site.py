@@ -300,10 +300,9 @@ def render_head(page, lang, title, description, og_image, canonical_path, alt_pa
   <link rel="canonical" href="https://{DOMAIN}{canonical_path}">
   <meta name="robots" content="index, follow">
 
-  <!-- Favicon — light bg default; dark-bg swap via media query -->
-  <link rel="icon" type="image/png" href="/images/favicon-light-background.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="/images/favicon-dark-background.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" href="/images/favicon-light-background.png">
+  <!-- Favicon — single link with id; JS in main.js swaps light/dark based on prefers-color-scheme.
+       Why not media="(prefers-color-scheme:...)" on separate <link> tags? Chrome ignores it. -->
+  <link rel="icon" id="favicon" type="image/png" href="/images/favicon-light-background.png">
   <link rel="apple-touch-icon" href="/images/favicon-light-background.png">
 
   <!-- hreflang cross-references (English ↔ Spanish) -->
@@ -426,7 +425,7 @@ def render_hero(lang, seo_title, headline, body, bg_image):
     return f"""<section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('/images/{bg_image}');">
   <div class="container">
     <div class="hero-content">
-      <a href="{lang_toggle_href}" class="lang-toggle hero-lang-toggle" aria-label="{L['lang_aria']}">
+      <a href="{lang_toggle_href}" class="lang-toggle" aria-label="{L['lang_aria']}">
         <i class="fa-solid fa-language" aria-hidden="true"></i>
         <span>{L['lang_toggle']}</span>
       </a>
@@ -645,39 +644,23 @@ def render_faqs(lang, page_key):
 
 
 def render_footer(lang):
+    """SKILL Layout B (no map): logo + business name + two CTA buttons + copyright.
+    No plaintext phone, no email, no extra nav or taglines in the footer."""
     L = LABELS[lang]
     SH = SECTION_HEADINGS[lang]
     logo_dark = "/images/logo-dark-backgrounds.png"
-    privacy_path = clean_url("privacy-policy") if lang == "en" else clean_url("politica-de-privacidad")
-    terms_path = clean_url("terms-and-conditions") if lang == "en" else clean_url("terminos-y-condiciones")
     home_href = "/" if lang == "en" else HOME_ES_PATH
-
-    # Footer service list
-    svc_links = []
-    for s in SERVICES:
-        slug = s["slug_en"] if lang == "en" else s["slug_es"]
-        name = s["name_en"] if lang == "en" else s["name_es"]
-        svc_links.append(f'    <a href="{clean_url(slug)}">{html_escape(name)}</a>')
-    svc_links_html = "\n".join(svc_links)
 
     return f"""<footer class="footer">
   <div class="container footer-inner-solo">
     <a href="{home_href}" class="footer-brand">
-      <img src="{logo_dark}" alt="{html_escape(BUSINESS_NAME)} logo" width="160">
+      <img src="{logo_dark}" alt="{html_escape(BUSINESS_NAME)} logo" width="200">
       <span class="footer-company-name">{html_escape(BUSINESS_NAME)}</span>
     </a>
-    <p class="footer-tagline">{html_escape(L['footer_tagline'])}</p>
     <div class="footer-ctas">
-      <a href="tel:{PHONE_TEL}" class="btn-primary">{L['call_cta']}</a>
-      <button class="btn-secondary" data-modal="hero-modal" type="button">{SH['hero_cta2']}</button>
+      <a href="tel:{PHONE_TEL}" class="btn-primary footer-btn">{L['call_cta']}</a>
+      <button class="btn-secondary footer-btn" data-modal="hero-modal" type="button">{SH['hero_cta2']}</button>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-{svc_links_html}
-    </nav>
-    <nav class="footer-nav" aria-label="Legal">
-      <a href="{privacy_path}">{L['nav_privacy']}</a>
-      <a href="{terms_path}">{L['nav_terms']}</a>
-    </nav>
   </div>
   <div class="footer-bottom">
     <p>&copy; <span id="footer-year">{YEAR}</span> {html_escape(BUSINESS_NAME)}. {L['footer_rights']}</p>
@@ -938,6 +921,14 @@ def render_legal_page(lang, which, sections, title_txt):
 
     last_updated = "Last updated: " + BUILD_DATE if lang == "en" else "Última actualización: " + BUILD_DATE
 
+    # Language toggle — above the h1 on legal pages (no hero here)
+    L = LABELS[lang]
+    lang_toggle_href = HOME_ES_PATH if lang == "en" else "/"
+    lang_toggle_html = f'''<a href="{lang_toggle_href}" class="lang-toggle" aria-label="{L['lang_aria']}">
+          <i class="fa-solid fa-language" aria-hidden="true"></i>
+          <span>{L['lang_toggle']}</span>
+        </a>'''
+
     sections_html = ""
     for h2, paragraphs in sections:
         sections_html += f"          <h2>{html_escape(h2)}</h2>\n"
@@ -953,6 +944,7 @@ def render_legal_page(lang, which, sections, title_txt):
     main_html = f"""<main class="legal-page">
   <div class="container">
     <div class="legal-content">
+        {lang_toggle_html}
         <h1>{html_escape(title_txt)}</h1>
         <p class="legal-meta">{html_escape(last_updated)}</p>
 {sections_html}    </div>
@@ -1160,17 +1152,22 @@ def build_legal_pages():
 
 def build_404():
     title = "Page Not Found | " + BUSINESS_NAME
-    description = "The page you were looking for isn't here — but your next marketing win could be. Call (602) 829-0009 or explore our services."
+    description = "The page you were looking for isn't here — but your next marketing win could be. Explore our services or head back home."
     head = render_head(None, "en", title, description, "og-image.webp", "/404.html", "/")
     nav = render_nav("en", "/404.html")
+    L = LABELS["en"]
     main = f"""<main class="error-page">
   <div class="error-content">
+    <a href="{HOME_ES_PATH}" class="lang-toggle" aria-label="{L['lang_aria']}">
+      <i class="fa-solid fa-language" aria-hidden="true"></i>
+      <span>{L['lang_toggle']}</span>
+    </a>
     <div class="error-mark" aria-hidden="true">404</div>
     <h1>{html_escape(h1_from_title(title))}</h1>
     <p class="error-sub">This page took a wrong turn — but you don't have to. Most of the good stuff is one click away. Head back home, or tap the Call button and we'll point you to exactly what you need.</p>
     <div class="hero-ctas" style="justify-content:center;">
       <a href="/" class="btn-primary">Back To Home</a>
-      <a href="tel:{PHONE_TEL}" class="btn-secondary">Call {PHONE_DISPLAY}</a>
+      <a href="tel:{PHONE_TEL}" class="btn-secondary">{L['call_cta']}</a>
     </div>
   </div>
 </main>

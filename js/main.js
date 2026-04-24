@@ -2,6 +2,24 @@
    Firefly Rise — Main JS
    ========================================================================= */
 
+/* ── Adaptive Favicon (swap on prefers-color-scheme) ──
+   Chrome ignores media="(prefers-color-scheme:...)" on <link rel="icon">.
+   Safari and Firefox honor it but Chrome picks first/last regardless.
+   Using matchMedia is the only approach that works reliably everywhere. */
+(function setAdaptiveFavicon() {
+  var link = document.getElementById('favicon');
+  if (!link) return;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  var lightHref = '/images/favicon-light-background.png';
+  var darkHref  = '/images/favicon-dark-background.png';
+  function update(e) {
+    link.href = (e && e.matches) ? darkHref : (mq.matches ? darkHref : lightHref);
+  }
+  update();
+  if (mq.addEventListener) mq.addEventListener('change', update);
+  else if (mq.addListener) mq.addListener(update); // older Safari
+})();
+
 /* ── Footer year ── */
 (function () {
   var yearEl = document.getElementById('footer-year');

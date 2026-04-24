@@ -10,10 +10,9 @@
   <link rel="canonical" href="https://fireflyrise.com/marketing-digital-para-servicios-del-hogar/">
   <meta name="robots" content="index, follow">
 
-  <!-- Favicon — light bg default; dark-bg swap via media query -->
-  <link rel="icon" type="image/png" href="/images/favicon-light-background.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="/images/favicon-dark-background.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" href="/images/favicon-light-background.png">
+  <!-- Favicon — single link with id; JS in main.js swaps light/dark based on prefers-color-scheme.
+       Why not media="(prefers-color-scheme:...)" on separate <link> tags? Chrome ignores it. -->
+  <link rel="icon" id="favicon" type="image/png" href="/images/favicon-light-background.png">
   <link rel="apple-touch-icon" href="/images/favicon-light-background.png">
 
   <!-- hreflang cross-references (English ↔ Spanish) -->
@@ -112,7 +111,7 @@
 <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('/images/hero-bg.webp');">
   <div class="container">
     <div class="hero-content">
-      <a href="/" class="lang-toggle hero-lang-toggle" aria-label="View in English">
+      <a href="/" class="lang-toggle" aria-label="View in English">
         <i class="fa-solid fa-language" aria-hidden="true"></i>
         <span>ENGLISH</span>
       </a>
@@ -337,30 +336,13 @@
 <footer class="footer">
   <div class="container footer-inner-solo">
     <a href="/marketing-digital-para-servicios-del-hogar/" class="footer-brand">
-      <img src="/images/logo-dark-backgrounds.png" alt="Firefly Rise logo" width="160">
+      <img src="/images/logo-dark-backgrounds.png" alt="Firefly Rise logo" width="200">
       <span class="footer-company-name">Firefly Rise</span>
     </a>
-    <p class="footer-tagline">Marketing creado exclusivamente para contratistas de servicios del hogar.</p>
     <div class="footer-ctas">
-      <a href="tel:+16028290009" class="btn-primary">Llama (602) 829-0009</a>
-      <button class="btn-secondary" data-modal="hero-modal" type="button">Obtén Tu Llamada Gratis</button>
+      <a href="tel:+16028290009" class="btn-primary footer-btn">Llama (602) 829-0009</a>
+      <button class="btn-secondary footer-btn" data-modal="hero-modal" type="button">Obtén Tu Llamada Gratis</button>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="/administracion-de-google-ads/">Administración de Google Ads</a>
-    <a href="/anuncios-en-facebook-y-meta/">Anuncios en Facebook y Meta</a>
-    <a href="/diseno-y-desarrollo-web/">Diseño y Desarrollo Web</a>
-    <a href="/diseno-de-paginas-de-aterrizaje/">Diseño de Páginas de Aterrizaje</a>
-    <a href="/generacion-de-prospectos/">Generación de Prospectos</a>
-    <a href="/manejo-de-reputacion/">Manejo de Reputación</a>
-    <a href="/optimizacion-de-google-business-profile/">Optimización de Google Business Profile</a>
-    <a href="/optimizacion-de-conversiones/">Optimización de Conversiones</a>
-    <a href="/seguimiento-de-llamadas-y-analitica/">Seguimiento de Llamadas y Analítica</a>
-    <a href="/diseno-de-marca-y-logotipo/">Diseño de Marca y Logotipo</a>
-    </nav>
-    <nav class="footer-nav" aria-label="Legal">
-      <a href="/politica-de-privacidad/">Política de Privacidad</a>
-      <a href="/terminos-y-condiciones/">Términos y Condiciones</a>
-    </nav>
   </div>
   <div class="footer-bottom">
     <p>&copy; <span id="footer-year">2026</span> Firefly Rise. Todos los derechos reservados.</p>

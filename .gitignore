@@ -1,37 +1,21 @@
-# Environment variables — NEVER commit API keys
+# Environment — NEVER commit
 .env
 .env.local
-.env.*.local
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-env/
-.venv
-
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+.env.*
 
 # OS files
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# Editor / IDE
+# Editor files
 .vscode/
 .idea/
 *.swp
-*.swo
-*~
 
-# Build outputs
-dist/
-build/
-*.log
+# Python build cache
+__pycache__/
+*.pyc
+
+# Claude Code — local settings and worktrees (keep launch.json for previewing)
+.claude/settings.local.json
+.claude/worktrees/

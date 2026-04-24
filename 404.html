@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Page Not Found | Firefly Rise</title>
-  <meta name="description" content="The page you were looking for isn&#39;t here — but your next marketing win could be. Call (602) 829-0009 or explore our services.">
+  <meta name="description" content="The page you were looking for isn&#39;t here — but your next marketing win could be. Explore our services or head back home.">
   <meta name="keywords" content="home services marketing, digital marketing agency, Google Ads, Facebook Ads, lead generation, Firefly Rise">
   <link rel="canonical" href="https://fireflyrise.com/404.html">
   <meta name="robots" content="index, follow">
 
-  <!-- Favicon — light bg default; dark-bg swap via media query -->
-  <link rel="icon" type="image/png" href="/images/favicon-light-background.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="/images/favicon-dark-background.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" href="/images/favicon-light-background.png">
+  <!-- Favicon — single link with id; JS in main.js swaps light/dark based on prefers-color-scheme.
+       Why not media="(prefers-color-scheme:...)" on separate <link> tags? Chrome ignores it. -->
+  <link rel="icon" id="favicon" type="image/png" href="/images/favicon-light-background.png">
   <link rel="apple-touch-icon" href="/images/favicon-light-background.png">
 
   <!-- hreflang cross-references (English ↔ Spanish) -->
@@ -25,7 +24,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Firefly Rise">
   <meta property="og:title" content="Page Not Found | Firefly Rise">
-  <meta property="og:description" content="The page you were looking for isn&#39;t here — but your next marketing win could be. Call (602) 829-0009 or explore our services.">
+  <meta property="og:description" content="The page you were looking for isn&#39;t here — but your next marketing win could be. Explore our services or head back home.">
   <meta property="og:url" content="https://fireflyrise.com/404.html">
   <meta property="og:image" content="https://fireflyrise.com/images/og-image.webp">
   <meta property="og:image:width" content="1200">
@@ -36,7 +35,7 @@
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Page Not Found | Firefly Rise">
-  <meta name="twitter:description" content="The page you were looking for isn&#39;t here — but your next marketing win could be. Call (602) 829-0009 or explore our services.">
+  <meta name="twitter:description" content="The page you were looking for isn&#39;t here — but your next marketing win could be. Explore our services or head back home.">
   <meta name="twitter:image" content="https://fireflyrise.com/images/og-image.webp">
   <meta name="twitter:image:alt" content="Firefly Rise — Page Not Found | Firefly Rise">
 
@@ -111,6 +110,10 @@
 </nav>
 <main class="error-page">
   <div class="error-content">
+    <a href="/marketing-digital-para-servicios-del-hogar/" class="lang-toggle" aria-label="Ver en Español">
+      <i class="fa-solid fa-language" aria-hidden="true"></i>
+      <span>ESPAÑOL</span>
+    </a>
     <div class="error-mark" aria-hidden="true">404</div>
     <h1>Page Not Found</h1>
     <p class="error-sub">This page took a wrong turn — but you don't have to. Most of the good stuff is one click away. Head back home, or tap the Call button and we'll point you to exactly what you need.</p>
@@ -123,30 +126,13 @@
 <footer class="footer">
   <div class="container footer-inner-solo">
     <a href="/" class="footer-brand">
-      <img src="/images/logo-dark-backgrounds.png" alt="Firefly Rise logo" width="160">
+      <img src="/images/logo-dark-backgrounds.png" alt="Firefly Rise logo" width="200">
       <span class="footer-company-name">Firefly Rise</span>
     </a>
-    <p class="footer-tagline">Marketing built exclusively for home service contractors.</p>
     <div class="footer-ctas">
-      <a href="tel:+16028290009" class="btn-primary">Call (602) 829-0009</a>
-      <button class="btn-secondary" data-modal="hero-modal" type="button">Get My Free Strategy Call</button>
+      <a href="tel:+16028290009" class="btn-primary footer-btn">Call (602) 829-0009</a>
+      <button class="btn-secondary footer-btn" data-modal="hero-modal" type="button">Get My Free Strategy Call</button>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="/google-ads-management/">Google Ads Management</a>
-    <a href="/facebook-meta-ads/">Facebook &amp; Meta Ads</a>
-    <a href="/website-design-development/">Website Design &amp; Development</a>
-    <a href="/landing-page-design/">Landing Page Design</a>
-    <a href="/lead-generation/">Lead Generation</a>
-    <a href="/reputation-management/">Reputation Management</a>
-    <a href="/google-business-profile-optimization/">Google Business Profile Optimization</a>
-    <a href="/conversion-rate-optimization/">Conversion Rate Optimization</a>
-    <a href="/call-tracking-analytics/">Call Tracking &amp; Analytics</a>
-    <a href="/branding-logo-design/">Branding &amp; Logo Design</a>
-    </nav>
-    <nav class="footer-nav" aria-label="Legal">
-      <a href="/privacy-policy/">Privacy Policy</a>
-      <a href="/terms-and-conditions/">Terms & Conditions</a>
-    </nav>
   </div>
   <div class="footer-bottom">
     <p>&copy; <span id="footer-year">2026</span> Firefly Rise. All rights reserved.</p>
