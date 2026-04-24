@@ -104,7 +104,7 @@ Ask these together in one message:
 > 5. *What's the best phone number to display on the site?*
 > 6. *What's the best email address to display?*
 > 7. *Do you have a Google Maps embed code for your business location? If yes, paste it here. If not, I'll leave a clearly marked placeholder you can fill in later.*
-> 8. *What is your website domain? (e.g. sunriseplumbing.com — without https://). This is only needed for 4 specific tags: og:image, og:url, canonical, and hreflang. All internal links use absolute paths like `/terms-and-conditions.html` and don't need the domain. If you don't have a domain yet, just say "unknown" and I'll add placeholder comments in those 4 spots.*"
+> 8. *What is your website domain? (e.g. sunriseplumbing.com — without https://). This is only needed for 4 specific tags: og:image, og:url, canonical, and hreflang. All internal links use absolute paths like `/terms-and-conditions/` and don't need the domain. If you don't have a domain yet, just say "unknown" and I'll add placeholder comments in those 4 spots.*"
 
 Store answers as: `BUSINESS_NAME`, `INDUSTRY`, `CITY` (city name only), `STATE` (2-letter abbreviation), `BUSINESS_ADDRESS` (full street address), `PHONE`, `EMAIL`, `GOOGLE_MAPS_IFRAME` (raw iframe embed code, or `null` if not provided), `DOMAIN` (e.g. `sunriseplumbing.com`, or `null` if unknown)
 
@@ -144,22 +144,115 @@ Wait for the client to select their services (by number, by name, or a mix). The
 
 **Homepage theming rule:** The homepage (`index.html`) is themed around `MAIN_SERVICE`. The hero headline, meta title, h1, and overall copy focus on this umbrella service. The Services section on the homepage showcases all the individual `SERVICES` as sub-services, linking to their dedicated pages. This creates the hub-and-spoke SEO structure — the homepage targets the broad industry keyword while each service page targets a specific long-tail keyword.
 
+---
+
+## CRITICAL URL STRUCTURE RULE — READ CAREFULLY
+
+**All URLs are extensionless (no `.html`).** Every page except the root `index.html` and `404.html` lives inside its own folder as `index.html`, producing clean folder URLs.
+
+| Page | File location (on disk) | Public URL (in `href`, canonical, sitemap, hreflang) |
+|---|---|---|
+| English homepage | `index.html` | `/` |
+| Service page | `[service-slug]/index.html` | `/[service-slug]/` |
+| Spanish homepage | `[spanish-home-slug]/index.html` | `/[spanish-home-slug]/` |
+| Spanish service page | `[servicio-slug]/index.html` | `/[servicio-slug]/` |
+| Privacy Policy (EN) | `privacy-policy/index.html` | `/privacy-policy/` |
+| Terms & Conditions (EN) | `terms-and-conditions/index.html` | `/terms-and-conditions/` |
+| Privacy Policy (ES) | `politica-de-privacidad/index.html` | `/politica-de-privacidad/` |
+| Terms & Conditions (ES) | `terminos-y-condiciones/index.html` | `/terminos-y-condiciones/` |
+| 404 page | `404.html` (stays at root) | N/A — served by host on 404 |
+
+**Every `href`, canonical, `og:url`, `hreflang`, and sitemap `<loc>` MUST use the folder URL with trailing slash.** Never link to `/privacy-policy.html` — always `/privacy-policy/`.
+
+**When you see any example in this document showing a URL like `/drain-cleaning.html` or `/privacy-policy.html`, treat it as out-of-date shorthand and apply the clean URL convention instead.** Filenames on disk follow the `[slug]/index.html` pattern above.
+
+Works natively on GitHub Pages, Netlify, Vercel, Cloudflare Pages, and any host that serves `index.html` for folder requests.
+
+---
+
+## CRITICAL NO-PRICING RULE — READ CAREFULLY
+
+**No specific pricing appears ANYWHERE on the website.** Not in the hero, services, banner, FAQs, About, reviews, Privacy, T&C, or any other section. The client's pricing info gathered in Round 6 is used only to inform Claude's positioning — never to generate on-page copy that quotes numbers.
+
+**Forbidden everywhere:**
+- Dollar amounts: `$99`, `$199`, `$500+` ❌
+- Price ranges: `$99–$299`, `starting at $149` ❌
+- "Most customers pay around $200" ❌
+- Any numeric reference to cost, fees, rates, charges, or deposits ❌
+
+**Allowed (positioning language that sets expectations without quoting numbers):**
+- "Upfront pricing" ✅
+- "Free estimates / free consultations / free inspections" ✅
+- "No hidden fees" / "No surprises" ✅
+- "You'll know the exact price before any work begins" ✅
+- "Transparent, flat-rate pricing" ✅
+- "Competitive rates" (if true) ✅
+
+Why: prices change, vary by job, and commit the business to something it may not want public. Positioning language reassures visitors without locking in numbers.
+
+This rule applies to English AND Spanish copy, all pages, all sections, all languages.
+
+---
+
+## CRITICAL CONTACT DISPLAY RULE — READ CAREFULLY
+
+**EMAIL is NEVER displayed on the homepage, service pages, hero, footer, navigation, or anywhere except the Privacy Policy and T&C contact sections.** Bots scrape plaintext emails and `mailto:` links and flood the inbox with spam.
+
+**PHONE only appears inside `tel:` button links** (hero CTA, footer CTA) — never as plaintext in the hero body, footer body, nav, or other sections. Exception: Privacy Policy and T&C contact sections may display phone in plaintext (legal context, low spam risk).
+
+Under NO circumstances should you render any of the following on the homepage, service pages, or in the footer:
+- `<p>Call us: (555) 123-4567</p>` ❌
+- `<p>Email: info@business.com</p>` ❌
+- `<a href="mailto:info@business.com">info@business.com</a>` ❌
+- `<div class="hero-contact">PHONE | EMAIL</div>` ❌
+- Any "contact info" block below the hero buttons ❌
+- Email or plaintext phone in the footer ❌
+
+**Where contact info IS allowed:**
+- `<a href="tel:PHONE" class="btn-primary">Call Now</a>` ✅ (inside CTA buttons only)
+- Privacy Policy and Terms & Conditions contact sections — plaintext phone AND email are both fine here
+- JSON-LD schema `telephone` field ✅ (structured data, not visible text)
+- Modal popup form fields ✅ (only sent to webhook, not visible as page text)
+
+The hero section has **exactly two CTA buttons and nothing else** after them — no contact info, no trust badges with phone numbers, no "or reach us at..." lines. The footer has logo + business name + two CTA buttons + map (if local). No plaintext phone, no email, anywhere in the footer.
+
+---
+
+## CRITICAL H1 RULE — READ CAREFULLY
+
+**The `<h1>` on EVERY page is the SEO service name. It is NEVER the business name.**
+
+| Page | H1 value |
+|---|---|
+| Homepage (`index.html`) | `MAIN_SERVICE` + optional location suffix (e.g. `Plumbing Services in Phoenix, AZ` or just `Plumbing Services`) |
+| Service pages (`[service-slug]/index.html`) | That service's SEO name (e.g. `Drain Cleaning Phoenix, AZ` or just `Drain Cleaning`) |
+| Privacy Policy | `Privacy Policy` |
+| Terms & Conditions | `Terms and Conditions` |
+| 404 page | `Page Not Found` (or equivalent) |
+
+**WRONG:** `<h1 class="hero-label">Sunrise Plumbing</h1>` ← business name — DO NOT DO THIS
+**RIGHT:** `<h1 class="hero-label">Plumbing Services in Phoenix, AZ</h1>` ← SEO service name
+
+The business name appears in the **navigation logo area** (next to the logo image, 22px, uppercase, `--color-primary`) and in the **footer**. It does NOT appear as the H1 on any page.
+
+If `BUSINESS_TYPE = national`, strip any location suffix from the H1 — clean service names only.
+
 Then ask:
 
 > *"One more quick question about your services — should the location be added to the end of each service page name for local SEO? This affects the filename, the page title, and the main heading on each service page.*
 >
 > *For example:*
-> - *Without location: title "Residential Roofing" → `residential-roofing.html`*
-> - *With location: title "Residential Roofing Phoenix, AZ" → `residential-roofing-phoenix-az.html`*
+> - *Without location: title "Residential Roofing" → `residential-roofing/index.html` (served at `/residential-roofing/`)*
+> - *With location: title "Residential Roofing Phoenix, AZ" → `residential-roofing-phoenix-az/index.html` (served at `/residential-roofing-phoenix-az/`)*
 >
 > *Adding the location helps Google rank you for local searches. Recommended if you serve one primary city.*"
 
 Store as `LOCATION_IN_FILENAMES` = yes or no.
 
-**Filename derivation rule — MANDATORY:** The filename is always the SEO `<title>` converted to lowercase with spaces replaced by hyphens, commas and punctuation removed, `ñ` → `n`, all accent marks stripped, and `.html` appended. The title IS the filename — never derive them independently.
+**Slug & folder derivation rule — MANDATORY:** The slug is always the SEO `<title>` converted to lowercase with spaces replaced by hyphens, commas and punctuation removed, `ñ` → `n`, and all accent marks stripped. That slug becomes a **folder name** containing an `index.html` file. The public URL is the folder path with a trailing slash (no `.html` extension anywhere). The title IS the slug — never derive them independently.
 
-- If **yes**: `<title>Drain Cleaning Phoenix, AZ</title>` → `drain-cleaning-phoenix-az.html`, `<h1>Drain Cleaning Phoenix AZ</h1>`
-- If **no**: `<title>Drain Cleaning</title>` → `drain-cleaning.html`, `<h1>Drain Cleaning</h1>`
+- If **yes**: `<title>Drain Cleaning Phoenix, AZ</title>` → file `drain-cleaning-phoenix-az/index.html`, URL `/drain-cleaning-phoenix-az/`, `<h1>Drain Cleaning Phoenix AZ</h1>`
+- If **no**: `<title>Drain Cleaning</title>` → file `drain-cleaning/index.html`, URL `/drain-cleaning/`, `<h1>Drain Cleaning</h1>`
 
 Lock in the final `SERVICES` list and `LOCATION_IN_FILENAMES` before moving on.
 
@@ -177,7 +270,10 @@ Ask these together:
 >    - *A filename if it's already in your project folder (e.g. logo.png)*
 >    - *Upload the file directly in this chat*
 >    - *Or say "no logo yet" and I'll use a styled text logo as a placeholder*
-> 2. *Do you have a favicon? (The small icon shown in the browser tab.) Same options — URL, filename, upload, or "no favicon yet" and I'll generate a simple one from your brand color.*
+> 2. *I need TWO favicons (the small icon shown in the browser tab) — one for light browser themes, one for dark browser themes. Each should be a PNG with a **transparent background**. For each, you can provide a URL, filename, upload, or say "no favicon yet" and I'll generate a simple one from your brand color.*
+>    - *Favicon for light browser themes (ideally a dark-colored logo visible on a white tab)*
+>    - *Favicon for dark browser themes (ideally a light-colored logo visible on a dark tab)*
+>    - *If you only have one PNG, I can use it for both — but it won't visually adapt between themes.*
 > 3. *What is your main brand color? Please give me the HEX code (e.g. #FF6B00). If you're not sure, describe the color and I'll suggest one.*
 > 4. *What color should buttons turn when someone hovers over them? HEX code please. (This is usually a darker shade of your main color.)*
 > 5. *Do you have a tagline or one-liner that describes what you do? If not, I can write one for you based on your business.*
@@ -187,7 +283,7 @@ Ask these together:
 >
 >    *Are you happy with these, or would you like to use different fonts? If you want changes, just tell me the font name(s) and which one is for headings vs. body text — I'll pull them from Google Fonts.*"
 
-Store as: `LOGO`, `FAVICON`, `COLOR_PRIMARY`, `COLOR_HOVER`, `TAGLINE`, `FONT_HEADING`, `FONT_BODY`
+Store as: `LOGO`, `FAVICON_LIGHT` (for light browser themes), `FAVICON_DARK` (for dark browser themes), `COLOR_PRIMARY`, `COLOR_HOVER`, `TAGLINE`, `FONT_HEADING`, `FONT_BODY`
 
 **Logo handling rules:**
 - If a URL is provided: use it directly in `<img src="URL">`
@@ -196,16 +292,45 @@ Store as: `LOGO`, `FAVICON`, `COLOR_PRIMARY`, `COLOR_HOVER`, `TAGLINE`, `FONT_HE
 - If none: render styled text logo using `BUSINESS_NAME` in `FONT_HEADING` and `--color-primary`. Add HTML comment: `<!-- Replace with <img src="images/logo.png"> once logo is ready -->`
 
 **Favicon handling rules:**
-- Reference in `<head>` as: `<link rel="icon" href="FAVICON_PATH" type="image/TYPE">`
-- Supported types: `.ico`, `.png`, `.svg`, `.webp`
+
+Two PNGs are collected — `FAVICON_LIGHT` (shown on light browser tabs) and `FAVICON_DARK` (shown on dark browser tabs). Both should have transparent backgrounds.
+
+Path resolution (same rules for both):
 - If a URL is provided: use it directly
 - If a filename is provided: reference as `images/FILENAME`
 - If uploaded: treat as `images/FILENAME`
-- If none: generate a simple SVG favicon using the first letter of `BUSINESS_NAME` on a `--color-primary` background:
+- If "no favicon yet" or only one was provided: generate/use a single default and point both slots to the same file (no theme adaptation in that case)
+
+**Why a JS swap, not `prefers-color-scheme` media queries:** Chrome does NOT honor the `media` attribute on favicon `<link>` tags. Safari and Firefox do, but Chrome picks the first or last link regardless of the user's theme. Using a tiny JS listener is the only approach that works reliably across all modern browsers.
+
+**Implementation in `<head>`:**
+```html
+<!-- Set a sensible initial favicon — JS will update it to match the user's theme on load -->
+<link rel="icon" id="favicon" type="image/png" href="FAVICON_LIGHT_PATH">
+```
+
+**Add to `js/main.js`:**
+```js
+(function setAdaptiveFavicon() {
+  var link = document.getElementById('favicon');
+  if (!link) return;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  var lightHref = 'FAVICON_LIGHT_PATH';
+  var darkHref  = 'FAVICON_DARK_PATH';
+  function update(e) { link.href = (e && e.matches) ? darkHref : (mq.matches ? darkHref : lightHref); }
+  update();
+  if (mq.addEventListener) mq.addEventListener('change', update);
+  else if (mq.addListener) mq.addListener(update); // older Safari
+})();
+```
+
+Substitute `FAVICON_LIGHT_PATH` and `FAVICON_DARK_PATH` with the actual paths at build time. If only one favicon is available, both paths point to the same file.
+
+**Fallback (if no favicons provided):** generate a simple SVG favicon using the first letter of `BUSINESS_NAME` on a `--color-primary` background (shown the same on both themes):
 ```html
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='COLOR_PRIMARY'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='18' fill='white'>B</text></svg>">
 ```
-Replace `COLOR_PRIMARY` with the actual hex value and `B` with the first letter of `BUSINESS_NAME`.
+Replace `COLOR_PRIMARY` with the actual hex value and `B` with the first letter of `BUSINESS_NAME`. No JS swap needed in this case.
 
 - If client approves default fonts: `FONT_HEADING = Montserrat`, `FONT_BODY = Open Sans`
 - If client provides changes: use exactly what they specify. Apply only to the stated role (heading or body or both). Keep the unchanged font as its default.
@@ -252,7 +377,7 @@ from drain cleaning to water heaters? Explore all our services on our homepage.<
 ```
 
 - Anchor text = the homepage's primary SEO keyword (e.g. "Phoenix plumber", "Phoenix HVAC company")
-- Link target = `/` (English) or `/SPANISH_HOME_FILENAME` (Spanish service pages)
+- Link target = `/` (English) or `/SPANISH_HOME_SLUG/` (Spanish service pages)
 - Place naturally in the About Us body copy or as a closing sentence in the Why Us section
 - Do not force it — it must read naturally in context
 
@@ -267,7 +392,7 @@ Ask these together:
 > 2. *Do you need a Spanish version of the site?*"
 
 - If **booking = yes**: Ask *"What booking platform do you use, or would you like me to recommend one? If you already have an embed code, paste it here."* Store as `BOOKING_EMBED`.
-- If **Spanish = yes**: Ask *"What regional variety of Spanish should the site use? For most businesses, naming the country is enough — e.g. 'Mexican Spanish', 'Colombian Spanish', 'US Spanish (neutral)'. If you're targeting a specific city or region and want the language to feel very local, you can be more specific — e.g. 'Monterrey, Mexico' or 'Medellín, Colombia'."* Store as `SPANISH_REGION`. Then set `BILINGUAL = yes` — the site will be delivered as `index.html` (English) + `index-es.html` (Spanish) with a language toggle in the nav.
+- If **Spanish = yes**: Ask *"What regional variety of Spanish should the site use? For most businesses, naming the country is enough — e.g. 'Mexican Spanish', 'Colombian Spanish', 'US Spanish (neutral)'. If you're targeting a specific city or region and want the language to feel very local, you can be more specific — e.g. 'Monterrey, Mexico' or 'Medellín, Colombia'."* Store as `SPANISH_REGION`. Then set `BILINGUAL = yes` — the site will be delivered as English `index.html` (at root, served at `/`) plus a Spanish `[spanish-home-slug]/index.html` (served at `/[spanish-home-slug]/`) with a language toggle in the nav.
 
 Then ask separately:
 
@@ -339,7 +464,7 @@ Then ask all of the following, grouped as shown:
 - Why do repeat customers keep coming back to you specifically?
 
 **Your offer:**
-- What's your typical price range or starting price?
+- What's your typical price range or starting price? *(Note: this informs the positioning only — no specific dollar amounts or ranges will appear on the site. Used to gauge affordability cues and shape language like "upfront pricing" or "free estimates".)*
 - Do you offer free estimates, consultations, or inspections?
 - Any current promotions or special offers?
 - What payment methods do you accept?
@@ -596,8 +721,8 @@ All pages use the fixed layout defined above. Build sections in this exact order
    **Menu items (desktop, right-aligned):**
    - All menu link text: `color: var(--color-primary); font-weight: 600; background: white`
    - On hover: `background-color: var(--color-hover); color: #ffffff` — applied to the entire clickable area of the item
-   - All URLs lowercase with single hyphens instead of spaces (e.g. `/drain-cleaning-phoenix-az.html`)
-   - All paths are **absolute from root** — always start with `/`
+   - All URLs lowercase with single hyphens instead of spaces and a trailing slash (e.g. `/drain-cleaning-phoenix-az/`)
+   - All paths are **absolute from root** — always start with `/` and end with `/` (no `.html` extension)
 
    **Menu structure:**
    ```
@@ -608,32 +733,32 @@ All pages use the fixed layout defined above. Build sections in this exact order
 
    - **Services ▾** — dropdown with chevron icon (`▾` or SVG chevron) on the right of the label. Contains one link per service page:
      - Anchor text = service name only, no city/location (e.g. "Drain Cleaning")
-     - href = absolute path to the full SEO filename (e.g. `/drain-cleaning-phoenix-az.html`)
+     - href = absolute folder URL with trailing slash (e.g. `/drain-cleaning-phoenix-az/`)
      - This applies whether `LOCATION_IN_FILENAMES` is yes or no
 
    - **About Us ▾** — dropdown with chevron icon on the right. Contains:
      - "About Us" → anchor link to the `#about-us` section **of the correct home page** (see rules below)
-     - "Privacy Policy" → `/privacy-policy.html`
-     - "Terms & Conditions" → `/terms-and-conditions.html`
+     - "Privacy Policy" → `/privacy-policy/`
+     - "Terms & Conditions" → `/terms-and-conditions/`
 
    **About Us anchor link — MANDATORY bilingual logic:**
 
    The "About Us" link must always point to the `#about-us` section of whichever home page matches the current page's language. Use absolute paths so the link works correctly from any page depth.
 
-   **Home page filenames:**
-   - English homepage: always `index.html` → served at `/`
-   - Spanish homepage: derived from the Spanish translation of the business's main service, following the standard filename rule (SEO title → lowercase, hyphens, no accents, no ñ). Examples:
-     - Roofing company → `compania-de-techos.html` → served at `/compania-de-techos.html`
-     - Plumbing company → `plomeria-en-phoenix-az.html` → served at `/plomeria-en-phoenix-az.html`
-     - HVAC company → `servicio-de-aire-acondicionado-phoenix-az.html`
-   - Store this as `SPANISH_HOME_FILENAME` — derived when building the Spanish homepage
+   **Home page locations:**
+   - English homepage: always `index.html` at the project root → served at `/`
+   - Spanish homepage: lives inside its own folder as `[spanish-home-slug]/index.html` → served at `/[spanish-home-slug]/`. The slug is derived from the Spanish translation of the business's main service, following the standard slug rule (SEO title → lowercase, hyphens, no accents, no ñ). Examples:
+     - Roofing company → `compania-de-techos/index.html` → served at `/compania-de-techos/`
+     - Plumbing company → `plomeria-en-phoenix-az/index.html` → served at `/plomeria-en-phoenix-az/`
+     - HVAC company → `servicio-de-aire-acondicionado-phoenix-az/index.html` → served at `/servicio-de-aire-acondicionado-phoenix-az/`
+   - Store the slug as `SPANISH_HOME_SLUG` (and the folder URL `/SPANISH_HOME_SLUG/` as `SPANISH_HOME_URL`) — derived when building the Spanish homepage
 
    | Current file | Language | About Us href |
    |---|---|---|
    | `index.html` or any English page | English | `/#about-us` |
-   | `SPANISH_HOME_FILENAME` or any Spanish page | Spanish | `/SPANISH_HOME_FILENAME#about-us` |
+   | Spanish homepage or any Spanish page | Spanish | `/SPANISH_HOME_SLUG/#about-us` |
 
-   **Implementation:** Hardcode the correct href in each file's nav HTML at build time — do not use JavaScript to detect language at runtime. The English nav always contains `href="/#about-us"`. The Spanish nav always contains `href="/SPANISH_HOME_FILENAME#about-us"` with the actual filename substituted.
+   **Implementation:** Hardcode the correct href in each file's nav HTML at build time — do not use JavaScript to detect language at runtime. The English nav always contains `href="/#about-us"`. The Spanish nav always contains `href="/SPANISH_HOME_SLUG/#about-us"` with the actual slug substituted.
 
    The `#about-us` ID must be present on the About Us `<section>` in both the English and Spanish homepages:
    ```html
@@ -664,10 +789,10 @@ All pages use the fixed layout defined above. Build sections in this exact order
    - href = full SEO slug with city/location when `LOCATION_IN_FILENAMES = yes`
    ```html
    <!-- LOCATION_IN_FILENAMES = yes -->
-   <a href="/drain-cleaning-phoenix-az.html">Drain Cleaning</a>
+   <a href="/drain-cleaning-phoenix-az/">Drain Cleaning</a>
 
    <!-- LOCATION_IN_FILENAMES = no -->
-   <a href="/drain-cleaning.html">Drain Cleaning</a>
+   <a href="/drain-cleaning/">Drain Cleaning</a>
    ```
 
 2. **Hero Section**
@@ -692,6 +817,12 @@ All pages use the fixed layout defined above. Build sections in this exact order
    <section class="hero">
      <div class="container">
        <div class="hero-content">
+         <!-- Language toggle — ABOVE the h1 (only present if BILINGUAL = yes) -->
+         <!-- On English pages: links to /SPANISH_HOME_SLUG/ with label "ESPAÑOL" -->
+         <!-- On Spanish pages: links to / with label "ENGLISH" -->
+         <a href="/SPANISH_HOME_SLUG/" class="lang-toggle" aria-label="Ver en Español">
+           <i class="fa-solid fa-language" aria-hidden="true"></i> ESPAÑOL
+         </a>
          <h1 class="hero-label">SERVICE PAGE NAME</h1>
          <h2 class="hero-headline">SUBTITLE</h2>
          <p class="hero-body">BODY COPY</p>
@@ -706,12 +837,14 @@ All pages use the fixed layout defined above. Build sections in this exact order
 
    ### hero-content Rules
    - `width: 100%` — takes the full width of its parent `.container`. **No max-width.**
+   - **Padding: `20px` on all sides. Zero margin.**
    - Background: semi-transparent dark overlay applied directly on `.hero-content`:
    ```css
    .hero-content {
      width: 100%;
      background-color: rgba(0, 0, 0, 0.75);
-     padding: var(--space-xl) var(--space-lg);
+     padding: 20px;
+     margin: 0;
      text-align: left;
    }
    ```
@@ -2088,7 +2221,7 @@ The `"source": "hero_modal"` field identifies these leads in Pabbly Connect.
 
 **Service name always comes before location. Never reverse the order. Service pages do not include the business name in the title.**
 
-**Domain in meta tags:** For `og:url`, `og:image`, `canonical`, and `hreflang` — use `https://DOMAIN/` if `DOMAIN` is known. If `DOMAIN = null`, use `https://yourdomain.com/` as placeholder and add comment: `<!-- Replace yourdomain.com with your actual domain before going live -->`. All other internal links use absolute paths (`/page.html`) and never need the domain.
+**Domain in meta tags:** For `og:url`, `og:image`, `canonical`, and `hreflang` — use `https://DOMAIN/` if `DOMAIN` is known. If `DOMAIN = null`, use `https://yourdomain.com/` as placeholder and add comment: `<!-- Replace yourdomain.com with your actual domain before going live -->`. All other internal links use absolute paths (`/page/`) and never need the domain.
 
 Always include the full tag set below in `<head>` on every page — **in this exact order**. Charset and viewport must come first. All values are page-specific — never reuse the homepage values on service pages.
 
@@ -2140,7 +2273,7 @@ Always include the full tag set below in `<head>` on every page — **in this ex
 |---|---|---|
 | `og:title` | `BUSINESS_NAME \| INDUSTRY in CITY, STATE` | `Service Name CITY, STATE` |
 | `og:description` | Tagline + city + call to action | Benefit-focused description of that specific service |
-| `og:url` | `https://DOMAIN/` | `https://DOMAIN/service-slug.html` |
+| `og:url` | `https://DOMAIN/` | `https://DOMAIN/service-slug/` |
 | `og:image` | `https://DOMAIN/images/og-image.webp` | Same shared OG image for all pages |
 | `twitter:card` | `summary_large_image` | `summary_large_image` |
 | `meta description` | 140–160 chars, includes city + phone | 140–160 chars, service + benefit + city |
@@ -2246,7 +2379,7 @@ Generous, consistent spacing makes sites look professional and easy to read:
   --space-2xl: 6rem;     /* 96px */
   --section-padding-mobile: var(--space-xl) var(--space-sm);
   --section-padding-desktop: var(--space-2xl) var(--space-lg);
-  --container-max-width: 1100px;
+  --container-max-width: 1200px;
 }
 ```
 
@@ -2283,7 +2416,7 @@ Every section wraps its content in a single `<div class="container">`. Never set
 **Typography readability rules:**
 - Body font size: minimum `1rem` (16px). Never smaller.
 - Line height: `1.6` for body text, `1.2` for headings
-- Paragraph max-width: `65ch` to keep lines readable
+- **Paragraph width: ALWAYS 100% of the parent container. DO NOT apply `max-width` (no `65ch`, no `800px`, no `60em`, no numeric cap of any kind) to paragraphs in section content.** Line-length readability is handled by the `.container` max-width at the section level (`1200px`) — not by paragraph-level caps. The only exceptions where a narrower paragraph is allowed: (1) inside a 2-column subcontainer layout where the column is already ~50% (e.g. About Us text column), (2) the Banner CTA text which is centered and visually balanced at ~800px, (3) `max-width: 100%` on images. Every other `<p>` takes the full width of its parent.
 - Heading hierarchy: `h1` (hero) → `h2` (section titles) → `h3` (card titles) — never skip levels
 - Sufficient contrast: body text on white/gray backgrounds must meet WCAG AA (4.5:1 ratio minimum)
 
@@ -2350,12 +2483,12 @@ Add `--color-cta-text` to the `:root` CSS variables in Step 2:
 ```
 
 ### Other Technical Requirements
-- **File naming convention**: All HTML filenames are derived directly from the SEO `<title>` — lowercase, spaces replaced with hyphens, commas and punctuation removed, `ñ` → `n`, all accent marks stripped (á→a, é→e, í→i, ó→o, ú→u, ü→u), `.html` appended. The title and filename are always in sync — never derive them separately. Examples: title `"Drain Cleaning Phoenix, AZ"` → `drain-cleaning-phoenix-az.html` · title `"Servicios de Plomería"` → `servicios-de-plomeria.html`. Never use spaces, underscores, or special characters in any filename.
+- **File naming convention**: All page slugs are derived directly from the SEO `<title>` — lowercase, spaces replaced with hyphens, commas and punctuation removed, `ñ` → `n`, all accent marks stripped (á→a, é→e, í→i, ó→o, ú→u, ü→u). Each slug becomes a **folder** containing `index.html`, and the public URL is the folder path with a trailing slash (no `.html`). The title and slug are always in sync — never derive them separately. Examples: title `"Drain Cleaning Phoenix, AZ"` → file `drain-cleaning-phoenix-az/index.html`, URL `/drain-cleaning-phoenix-az/` · title `"Servicios de Plomería"` → file `servicios-de-plomeria/index.html`, URL `/servicios-de-plomeria/`. The only files that stay at the project root are the English `index.html` (served at `/`) and `404.html`. Never use spaces, underscores, or special characters in any slug.
 - **Separate CSS and JS files**: Never inline CSS or JS into HTML files. Always output:
   - `css/styles.css` — all styles for the site
   - `js/main.js` — all JavaScript for the site
-  - HTML files reference them via `<link rel="stylesheet" href="css/styles.css">` and `<script src="js/main.js" defer></script>`
-  - For bilingual sites, both `index.html` and `SPANISH_HOME_FILENAME` link to the same `css/styles.css` and `js/main.js` — do not duplicate these files
+  - HTML files reference them via `<link rel="stylesheet" href="/css/styles.css">` and `<script src="/js/main.js" defer></script>` (absolute paths so they resolve correctly from nested folders)
+  - For bilingual sites, the English `index.html` (at root) and the Spanish `[spanish-home-slug]/index.html` link to the same `css/styles.css` and `js/main.js` — do not duplicate these files
 - **No frameworks**: Vanilla HTML/CSS/JS only (no React/Vue) unless user requests
 - **Performance**: Lazy-load images (`loading="lazy"`), no heavy libraries
 - **Accessibility**: Semantic HTML5 tags, alt attributes, ARIA labels on all form inputs
@@ -2377,23 +2510,23 @@ Add `--color-cta-text` to the `:root` CSS variables in Step 2:
   </url>
   <!-- one <url> block per service page -->
   <url>
-    <loc>https://DOMAIN/drain-cleaning-phoenix-az.html</loc>
+    <loc>https://DOMAIN/drain-cleaning-phoenix-az/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- Spanish homepage if BILINGUAL=yes -->
   <url>
-    <loc>https://DOMAIN/SPANISH_HOME_FILENAME</loc>
+    <loc>https://DOMAIN/SPANISH_HOME_SLUG/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://DOMAIN/privacy-policy.html</loc>
+    <loc>https://DOMAIN/privacy-policy/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://DOMAIN/terms-and-conditions.html</loc>
+    <loc>https://DOMAIN/terms-and-conditions/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -2583,31 +2716,32 @@ Write prompts that are specific to the `BUSINESS_NAME`, `INDUSTRY`, and `CITY`. 
 
 A bilingual site is delivered as **two fully self-contained HTML files** that mirror each other exactly in structure, design, and section order. One file is English, one is Spanish. They are linked to each other via a language toggle button in the navigation.
 
-**English homepage:** always `index.html` → served at `/`
+**English homepage:** always `index.html` at the project root → served at `/`
 
-**Spanish homepage filename (`SPANISH_HOME_FILENAME`):** derived from the Spanish SEO title of the main service, following the standard filename rule. The title is the translated service + city, stripped of accents, `ñ` → `n`, lowercased, hyphenated. Examples:
-- Roofing in Phoenix → title "Compañía de Techos Phoenix AZ" → `compania-de-techos-phoenix-az.html`
-- Plumbing in Phoenix → title "Plomería en Phoenix AZ" → `plomeria-en-phoenix-az.html`
-- HVAC in Dallas → title "Aire Acondicionado Dallas TX" → `aire-acondicionado-dallas-tx.html`
+**Spanish homepage (`SPANISH_HOME_SLUG`):** lives in its own folder as `[spanish-home-slug]/index.html` → served at `/[spanish-home-slug]/`. The slug is derived from the Spanish SEO title of the main service, following the standard slug rule. The title is the translated service + city, stripped of accents, `ñ` → `n`, lowercased, hyphenated. Examples:
+- Roofing in Phoenix → title "Compañía de Techos Phoenix AZ" → `compania-de-techos-phoenix-az/index.html` → URL `/compania-de-techos-phoenix-az/`
+- Plumbing in Phoenix → title "Plomería en Phoenix AZ" → `plomeria-en-phoenix-az/index.html` → URL `/plomeria-en-phoenix-az/`
+- HVAC in Dallas → title "Aire Acondicionado Dallas TX" → `aire-acondicionado-dallas-tx/index.html` → URL `/aire-acondicionado-dallas-tx/`
 
-Store as `SPANISH_HOME_FILENAME` when building the Spanish homepage.
+Store the slug as `SPANISH_HOME_SLUG` when building the Spanish homepage.
 
 ```
 project-folder/
-├── index.html                    ← English version (primary, served at /)
-├── SPANISH_HOME_FILENAME         ← Spanish version (e.g. compania-de-techos-phoenix-az.html)
+├── index.html                       ← English version (primary, served at /)
+├── [spanish-home-slug]/
+│   └── index.html                   ← Spanish version (e.g. compania-de-techos-phoenix-az/index.html)
 ├── css/
-│   └── styles.css                ← all styles (shared by both HTML files)
+│   └── styles.css                   ← all styles (shared by both HTML files)
 ├── js/
-│   └── main.js                   ← all JavaScript (shared by both HTML files)
+│   └── main.js                      ← all JavaScript (shared by both HTML files)
 └── images/
     └── LOGO
 ```
 
-If the site has additional pages beyond the single-page scroll, apply the same filename rules to all pages: lowercase, hyphen-separated, no accents, `ñ` → `n`. Examples:
-- "Servicios de Plomería" → `servicios-de-plomeria.html`
-- "Sobre Nosotros" → `sobre-nosotros.html`
-- "Preguntas Frecuentes" → `preguntas-frecuentes.html`
+If the site has additional pages beyond the single-page scroll, apply the same slug rules to all pages: lowercase, hyphen-separated, no accents, `ñ` → `n`, each as `[slug]/index.html`. Examples:
+- "Servicios de Plomería" → `servicios-de-plomeria/index.html` → URL `/servicios-de-plomeria/`
+- "Sobre Nosotros" → `sobre-nosotros/index.html` → URL `/sobre-nosotros/`
+- "Preguntas Frecuentes" → `preguntas-frecuentes/index.html` → URL `/preguntas-frecuentes/`
 
 **Why two files, not JS-based DOM swapping:**
 - Both pages are fully crawlable by Google — critical for local SEO in both English and Spanish
@@ -2619,42 +2753,73 @@ If the site has additional pages beyond the single-page scroll, apply the same f
 
 ### Language Toggle Button
 
-Appears in the navigation bar on **both pages**, styled consistently with the site's primary color.
+Appears **inside the hero section, directly above the h1**, on every page (English and Spanish) when `BILINGUAL = yes`. Uses the FA7 solid icon `fa-language`. Styled as a plain text link — **no border, no background, no padding**. White text + icon on the dark hero overlay. On hover, the text and icon scale up slightly (10%) and change color to `--color-primary`.
 
-**On `index.html` (English page):** button reads **"ESPAÑOL"** and links to `SPANISH_HOME_FILENAME`
-**On `SPANISH_HOME_FILENAME` (Spanish page):** button reads **"ENGLISH"** and links to `/`
+**On English pages (homepage, service pages, Privacy, T&C):** button reads **"ESPAÑOL"** and links to `/SPANISH_HOME_SLUG/` (the Spanish homepage).
+**On Spanish pages:** button reads **"ENGLISH"** and links to `/` (the English homepage).
 
 ```html
-<!-- On index.html — substitute actual SPANISH_HOME_FILENAME -->
-<a href="/compania-de-techos-phoenix-az.html" class="lang-toggle" aria-label="Ver en Español">🌐 ESPAÑOL</a>
+<!-- On any English page — substitute actual SPANISH_HOME_SLUG -->
+<a href="/compania-de-techos-phoenix-az/" class="lang-toggle" aria-label="Ver en Español">
+  <i class="fa-solid fa-language" aria-hidden="true"></i> ESPAÑOL
+</a>
 
-<!-- On SPANISH_HOME_FILENAME -->
-<a href="/" class="lang-toggle" aria-label="View in English">🌐 ENGLISH</a>
+<!-- On any Spanish page -->
+<a href="/" class="lang-toggle" aria-label="View in English">
+  <i class="fa-solid fa-language" aria-hidden="true"></i> ENGLISH
+</a>
 ```
 
 ```css
+/* Language toggle — styled as a plain text link, NOT a button */
 .lang-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 0.9rem;
-  border: 2px solid var(--color-primary);
-  border-radius: 4px;
-  color: var(--color-primary);
+  align-self: flex-start;             /* sits on the left edge of hero-content */
+  margin-bottom: var(--space-sm);     /* space before the h1 below */
+  padding: 0;                          /* no padding — it's a link, not a button */
+  border: none;                        /* no border */
+  background: transparent;             /* no background */
+  color: #ffffff;                      /* white on the dark hero overlay */
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-decoration: none;
   letter-spacing: 0.05em;
-  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  transform-origin: left center;       /* grow from the left anchor, not the middle */
+  transition: transform 0.2s ease, color 0.2s ease;
 }
-.lang-toggle:hover {
-  background: var(--color-primary);
-  color: var(--color-text-light);
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  color: var(--color-primary);         /* text AND icon turn primary color */
+  transform: scale(1.1);               /* slightly bigger on hover */
+}
+.lang-toggle i {
+  font-size: 1.05rem;                  /* icon slightly larger than text */
+  color: inherit;                      /* icon follows text color on hover */
 }
 ```
 
-The toggle sits to the left of the phone CTA in the nav bar on desktop, and at the top of the mobile menu dropdown.
+**Placement note:** The toggle is NOT in the navigation anymore. It lives inside `.hero-content` as the first child, above the H1. The navigation contains only the logo, the menu items (Home / Services ▾ / About Us ▾), and no language toggle.
+
+**Pages without a hero (Privacy Policy, Terms & Conditions, 404):** The language toggle appears at the top of the page content block, directly above the `<h1>` for those pages. Same text-link styling, same hover behavior. On a light background, the default text color is `--color-text-dark` (instead of white). On hover, the text + icon still turn `--color-primary` and scale up 10%.
+
+```css
+/* On Privacy Policy / T&C / 404 (light background) */
+.legal-content .lang-toggle,
+.not-found .lang-toggle {
+  color: var(--color-text-dark);
+}
+.legal-content .lang-toggle:hover,
+.legal-content .lang-toggle:focus-visible,
+.not-found .lang-toggle:hover,
+.not-found .lang-toggle:focus-visible {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+```
 
 ---
 
@@ -2667,20 +2832,20 @@ The toggle sits to the left of the phone CTA in the nav bar on desktop, and at t
   <title>BUSINESS_NAME | SERVICE in CITY</title>
   <meta name="description" content="TAGLINE_EN. Serving CITY. Call PHONE.">
   <link rel="alternate" hreflang="en" href="https://DOMAIN/">
-  <link rel="alternate" hreflang="es-REGION" href="https://DOMAIN/SPANISH_HOME_FILENAME">
+  <link rel="alternate" hreflang="es-REGION" href="https://DOMAIN/SPANISH_HOME_SLUG/">
   <link rel="canonical" href="https://DOMAIN/">
 </head>
 ```
 
-**`SPANISH_HOME_FILENAME` (Spanish — e.g. `compania-de-techos-phoenix-az.html`):**
+**Spanish homepage (`[spanish-home-slug]/index.html` — e.g. `compania-de-techos-phoenix-az/index.html`):**
 ```html
 <html lang="es">
 <head>
   <title>SPANISH SEO TITLE</title>
   <meta name="description" content="TAGLINE_ES. Sirviendo CITY. Llame al PHONE.">
   <link rel="alternate" hreflang="en" href="https://DOMAIN/">
-  <link rel="alternate" hreflang="es-REGION" href="https://DOMAIN/SPANISH_HOME_FILENAME">
-  <link rel="canonical" href="https://DOMAIN/SPANISH_HOME_FILENAME">
+  <link rel="alternate" hreflang="es-REGION" href="https://DOMAIN/SPANISH_HOME_SLUG/">
+  <link rel="canonical" href="https://DOMAIN/SPANISH_HOME_SLUG/">
 </head>
 ```
 
@@ -2757,10 +2922,14 @@ Both files must have **identical section order and IDs**. Nav anchor links (`#se
 **English-only site:**
 ```
 project-folder/
-├── index.html                    ← Homepage
-├── [service-slug].html           ← One file per service page
-├── privacy-policy.html
-├── terms-and-conditions.html
+├── index.html                       ← Homepage (served at /)
+├── 404.html                         ← 404 page (served by host on 404)
+├── [service-slug]/
+│   └── index.html                   ← One folder per service page (URL /[service-slug]/)
+├── privacy-policy/
+│   └── index.html                   ← URL /privacy-policy/
+├── terms-and-conditions/
+│   └── index.html                   ← URL /terms-and-conditions/
 ├── sitemap.xml
 ├── robots.txt
 ├── .gitignore
@@ -2776,27 +2945,35 @@ project-folder/
 ├── scripts/
 │   ├── generate_images.py
 │   └── images_manifest.json
-└── .env                          ← GEMINI_API_KEY (never deploy)
+└── .env                             ← GEMINI_API_KEY (never deploy)
 ```
 
 **Bilingual site:**
 ```
 project-folder/
-├── index.html                    ← English homepage (served at /)
-├── SPANISH_HOME_FILENAME         ← Spanish homepage
-├── [service-slug].html           ← English service pages
-├── [servicio-slug].html          ← Spanish service pages
-├── privacy-policy.html
-├── terms-and-conditions.html
-├── politica-de-privacidad.html
-├── terminos-y-condiciones.html
-├── sitemap.xml                   ← includes all pages, both languages
+├── index.html                       ← English homepage (served at /)
+├── 404.html                         ← 404 page (served by host on 404)
+├── [spanish-home-slug]/
+│   └── index.html                   ← Spanish homepage (URL /[spanish-home-slug]/)
+├── [service-slug]/
+│   └── index.html                   ← English service pages
+├── [servicio-slug]/
+│   └── index.html                   ← Spanish service pages
+├── privacy-policy/
+│   └── index.html
+├── terms-and-conditions/
+│   └── index.html
+├── politica-de-privacidad/
+│   └── index.html
+├── terminos-y-condiciones/
+│   └── index.html
+├── sitemap.xml                      ← includes all pages, both languages
 ├── robots.txt
 ├── .gitignore
 ├── css/
-│   └── styles.css                ← shared by all pages
+│   └── styles.css                   ← shared by all pages
 ├── js/
-│   └── main.js                   ← shared by all pages
+│   └── main.js                      ← shared by all pages
 ├── images/
 │   ├── LOGO
 │   ├── og-image.webp
@@ -2805,7 +2982,7 @@ project-folder/
 ├── scripts/
 │   ├── generate_images.py
 │   └── images_manifest.json
-└── .env                          ← GEMINI_API_KEY (never deploy)
+└── .env                             ← GEMINI_API_KEY (never deploy)
 ```
 
 3. Include a brief deployment note:
@@ -2814,7 +2991,7 @@ project-folder/
    - "Run `python scripts/generate_images.py scripts/images_manifest.json` first to populate the `images/` folder before deploying."
    - Netlify/Vercel/Cloudflare Pages: drag and drop the whole folder (excluding `.env`)
    - Coolify: zip the folder (excluding `.env`) and upload as a static site
-   - For bilingual sites: "Both `index.html` and `SPANISH_HOME_FILENAME` must be in the same root folder — do not put them in subfolders."
+   - For bilingual sites: "The English `index.html` stays at the project root (served at `/`). The Spanish homepage lives in its own folder as `[spanish-home-slug]/index.html` (served at `/[spanish-home-slug]/`). Deploy the whole project folder so all nested `index.html` files resolve correctly."
 4. List any remaining placeholders (booking embed code, testimonial photos, domain URL for hreflang tags)
 5. Offer to adjust: colors, copy, sections, form steps, or add new sections
 
@@ -2826,10 +3003,10 @@ Both pages are always generated as part of every site build. They are linked fro
 
 ---
 
-### Filenames
+### File locations
 
-- English: `privacy-policy.html` and `terms-and-conditions.html`
-- Spanish (if `BILINGUAL = yes`): `politica-de-privacidad.html` and `terminos-y-condiciones.html`
+- English: `privacy-policy/index.html` (URL `/privacy-policy/`) and `terms-and-conditions/index.html` (URL `/terms-and-conditions/`)
+- Spanish (if `BILINGUAL = yes`): `politica-de-privacidad/index.html` (URL `/politica-de-privacidad/`) and `terminos-y-condiciones/index.html` (URL `/terminos-y-condiciones/`)
 
 ---
 
@@ -2846,7 +3023,7 @@ Footer
 ```
 
 ```html
-<!-- privacy-policy.html or terms-and-conditions.html -->
+<!-- privacy-policy/index.html or terms-and-conditions/index.html -->
 <body>
   <!-- Navigation — identical to all other pages -->
 
@@ -2913,7 +3090,7 @@ Both documents must be:
 
 ---
 
-### Privacy Policy — `privacy-policy.html`
+### Privacy Policy — `privacy-policy/index.html`
 
 **`<title>`:** `Privacy Policy | BUSINESS_NAME`
 **`<h1>`:** `Privacy Policy`
@@ -2954,7 +3131,7 @@ Generate content covering these sections in order. Each section is an `<h2>` fol
 
 ---
 
-### Terms and Conditions — `terms-and-conditions.html`
+### Terms and Conditions — `terms-and-conditions/index.html`
 
 **`<title>`:** `Terms and Conditions | BUSINESS_NAME`
 **`<h1>`:** `Terms and Conditions`
@@ -2989,7 +3166,7 @@ Generate content covering these sections in order:
 
 ### Spanish Versions (when `BILINGUAL = yes`)
 
-Generate full Spanish translations of both pages following the same `SPANISH_REGION` rules that apply to the rest of the site. Filenames: `politica-de-privacidad.html` and `terminos-y-condiciones.html`.
+Generate full Spanish translations of both pages following the same `SPANISH_REGION` rules that apply to the rest of the site. Files: `politica-de-privacidad/index.html` (URL `/politica-de-privacidad/`) and `terminos-y-condiciones/index.html` (URL `/terminos-y-condiciones/`).
 
 Add links to these pages in the Spanish nav About Us dropdown alongside the English nav links.
 

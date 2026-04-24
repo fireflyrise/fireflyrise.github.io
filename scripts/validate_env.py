@@ -71,7 +71,7 @@ try:
 
     # Lightweight text call — costs nothing, confirms key is active
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-2.0-flash",
         contents="Reply with only the word: OK",
     )
 
