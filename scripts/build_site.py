@@ -17,6 +17,15 @@ from site_data import (
     REVIEWS_EN, REVIEWS_ES, WHY_US_ICONS, STEP_ICONS,
 )
 
+# Load .env (gitignored) for build-time secrets like the Pabbly webhook URL.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except ImportError:
+    pass  # dotenv is optional; falls back to placeholder if not installed
+
+PABBLY_WEBHOOK = os.getenv("PABBLY_CONNECT_WEBHOOK") or BUSINESS["webhook_placeholder"]
+
 
 def clean_url(slug):
     """/slug/ — the public URL for a service or legal page."""
@@ -690,7 +699,7 @@ def render_modal(lang):
     return f"""<div class="modal-overlay" id="hero-modal"
      data-lang="{lang}"
      data-spanish-region="{BUSINESS['spanish_region']}"
-     data-webhook="{BUSINESS['webhook_placeholder']}"
+     data-webhook="{html_escape(PABBLY_WEBHOOK)}"
      data-business="{html_escape(BUSINESS_NAME)}"
      data-step1-q="{html_escape(L['modal_step1_q'])}"
      data-step2-q="{html_escape(L['modal_step2_q'])}"
